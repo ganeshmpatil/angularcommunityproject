@@ -1,0 +1,145 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <app-input
+      label="Login id / लॉगिन आईडी"
+      [control]="registerForm.get('userid')"
+    ></app-input>
+    <div class="field">
+      <label class="label">Password / संकेतशब्द</label>
+      <div class="control">
+        <input
+          type="password"
+          class="form-control"
+          [formControl]="registerForm.get('password')"
+        />
+      </div>
+    </div>
+
+    <app-input
+      label="First Name / पहिले नाव"
+      [control]="registerForm.get('first_Name')"
+    ></app-input>
+
+    <app-input
+      label="Last Name / आडनाव"
+      [control]="registerForm.get('last_Name')"
+    ></app-input>
+
+    <label class="label">Photo/फोटो</label>
+    <div class="file-field md-form form-control">
+      <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
+        <input
+          type="file"
+          mdbFileSelect
+          (change)="onUpload($event)"
+          [formControl]="registerForm.get('user_image')"
+        />
+      </div>
+
+      <!--    <div *ngIf="imageSrc">
+        <img [src]="imageSrc" style="height: 150px; width: 250px;" />
+      </div> -->
+
+      <!--  <div class="file-path-wrapper">
+        <input
+          class="file-path"
+          type="text"
+          placeholder="Upload your file"
+          [value]="showFiles()"
+        />
+      </div> -->
+    </div>
+
+    <app-input
+      label="Father's Name / वडिलांचे पूर्ण नाव"
+      [control]="registerForm.get('father_full_Name')"
+    ></app-input>
+
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select
+        (change)="onGenderSelect($event)"
+        [formControl]="registerForm.get('gender')"
+        class="form-control"
+      >
+        <option>Choose Gender</option>
+        <option *ngFor="let gender of genderList">{{ gender }}</option>
+      </select>
+    </div>
+
+    <app-input
+      label="मोबाइल नंबर"
+      [control]="registerForm.get('mobile_number')"
+    ></app-input>
+
+    <app-input
+      label="ई-मेल आयडी"
+      [control]="registerForm.get('email_id')"
+    ></app-input>
+
+    <app-input
+      label="गावचे नाव"
+      [control]="registerForm.get('village_name')"
+    ></app-input>
+
+    <app-input
+      label="पत्ता लाइन 1"
+      [control]="registerForm.get('address_line_1')"
+    ></app-input>
+
+    <app-input
+      label="पत्ता लाइन 2"
+      [control]="registerForm.get('address_line_2')"
+    ></app-input>
+
+    <app-input
+      label="पत्ता लाइन 3"
+      [control]="registerForm.get('address_line_3')"
+    ></app-input>
+
+    <app-input
+      label="उपनगर / तालुका"
+      [control]="registerForm.get('suburb_taluka')"
+    ></app-input>
+
+    <app-input label="शहर" [control]="registerForm.get('city')"></app-input>
+
+    <app-input
+      label="राज्याचे नाव"
+      [control]="registerForm.get('state_name')"
+    ></app-input>
+
+    <app-input
+      label="पिन कोड"
+      [control]="registerForm.get('pin_code')"
+    ></app-input>
+
+    <app-input
+      label="शैक्षणिक पदवी"
+      [control]="registerForm.get('education_degree')"
+    ></app-input>
+
+    <div class="field">
+      <label class="label">Summary / सारांश</label>
+      <div class="control">
+        <textarea
+          class="form-control"
+          [formControl]="registerForm.get('user_summary')"
+        ></textarea>
+      </div>
+    </div>
+
+    <button
+      class="button is-primary"
+      [disabled]="registerForm.invalid"
+      type="submit"
+    >
+      Submit
+    </button>
+    <button class="button is-warning" type="button" (click)="onResetClick()">
+      Reset
+    </button>
+  </div>
+</form>
+<hr />
+<div>Form Contents: {{ registerForm.value | json }}</div>
