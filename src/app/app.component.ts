@@ -11,12 +11,10 @@ export class AppComponent {
   title = 'communityprojectui';
   menuElements = [];
   constructor(private meta: Meta) {
-    console.log('In constructor...');
     this.meta.addTags(
       [{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
       true
     );
     this.menuElements = new MenuConfig().data;
-    console.log('Menus :', this.menuElements);
   }
 }

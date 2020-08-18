@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CitizenregistrationService } from '../citizenregistration.service';
 
 @Component({
   selector: 'app-registerform',
@@ -13,9 +14,9 @@ export class RegisterformComponent implements OnInit {
   registerForm = new FormGroup({
     userid: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
-    first_Name: new FormControl('', [Validators.required]),
-    last_Name: new FormControl('', [Validators.required]),
-    father_full_Name: new FormControl('', [Validators.required]),
+    first_name: new FormControl('', [Validators.required]),
+    last_name: new FormControl('', [Validators.required]),
+    father_full_name: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
     mobile_number: new FormControl('', [Validators.required]),
     email_id: new FormControl('', []),
@@ -27,17 +28,19 @@ export class RegisterformComponent implements OnInit {
     city: new FormControl('', []),
     state_name: new FormControl('महाराष्ट्र', [Validators.required]),
     pin_code: new FormControl('', [Validators.required]),
+    user_image_input: new FormControl('', []),
     user_image: new FormControl('', []),
-    user_image_preview: new FormControl('', []),
     education_degree: new FormControl('', []),
     user_summary: new FormControl('', []),
   });
-  constructor() {}
+  constructor(private userService: CitizenregistrationService) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log('Form was submitted');
+    this.registerForm.value['status'] = 'A';
+    console.log(this.registerForm.value);
+    this.userService.saveUser(this.registerForm.value);
   }
 
   onResetClick() {
@@ -53,7 +56,7 @@ export class RegisterformComponent implements OnInit {
       reader.onload = () => {
         this.imageSrc = reader.result as string;
         this.registerForm.patchValue({
-          user_image_preview: reader.result,
+          user_image: reader.result,
         });
       };
     }

@@ -1,0 +1,11 @@
+1 ) Form formatting
+2 ) Marathi naming for all labels and buttons 
+3 ) History
+4 ) Styling
+5 ) image form control..<!-- [formControl]="registerForm.get('user_image')" -->
+6 ) Show alert message
+7 ) Show error message on angular for form vlaidation..
+8 ) Image optimization....
+7 ) Image Storage.
+
+

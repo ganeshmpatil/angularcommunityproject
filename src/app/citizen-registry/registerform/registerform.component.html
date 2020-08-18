@@ -17,12 +17,12 @@
 
     <app-input
       label="First Name / पहिले नाव"
-      [control]="registerForm.get('first_Name')"
+      [control]="registerForm.get('first_name')"
     ></app-input>
 
     <app-input
       label="Last Name / आडनाव"
-      [control]="registerForm.get('last_Name')"
+      [control]="registerForm.get('last_name')"
     ></app-input>
 
     <label class="label">Photo/फोटो</label>
@@ -32,7 +32,7 @@
           type="file"
           mdbFileSelect
           (change)="onUpload($event)"
-          [formControl]="registerForm.get('user_image')"
+          [formControl]="registerForm.get('user_image_input')"
         />
       </div>
 
@@ -52,7 +52,7 @@
 
     <app-input
       label="Father's Name / वडिलांचे पूर्ण नाव"
-      [control]="registerForm.get('father_full_Name')"
+      [control]="registerForm.get('father_full_name')"
     ></app-input>
 
     <div class="form-group">
