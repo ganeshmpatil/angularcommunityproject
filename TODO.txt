@@ -8,4 +8,8 @@
 8 ) Image optimization....
 7 ) Image Storage.
 
+AWS :-
+
+IAM
+Billing alarm.
 

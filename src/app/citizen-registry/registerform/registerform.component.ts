@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CitizenregistrationService } from '../citizenregistration.service';
+import { ImageuploadserviceService } from '../../shared/imageuploadservice.service';
 
 @Component({
   selector: 'app-registerform',
@@ -10,6 +11,8 @@ import { CitizenregistrationService } from '../citizenregistration.service';
 export class RegisterformComponent implements OnInit {
   imageSrc: string;
   genderList: any = ['Male', 'Female'];
+  imageObj: File;
+  imageUrl: string;
 
   registerForm = new FormGroup({
     userid: new FormControl('', [Validators.required]),
@@ -33,7 +36,10 @@ export class RegisterformComponent implements OnInit {
     education_degree: new FormControl('', []),
     user_summary: new FormControl('', []),
   });
-  constructor(private userService: CitizenregistrationService) {}
+  constructor(
+    private userService: CitizenregistrationService,
+    private imageService: ImageuploadserviceService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -47,23 +53,22 @@ export class RegisterformComponent implements OnInit {
     this.registerForm.reset();
   }
 
-  onUpload(event) {
-    console.log(event);
-    const reader = new FileReader();
-    if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.imageSrc = reader.result as string;
-        this.registerForm.patchValue({
-          user_image: reader.result,
-        });
-      };
-    }
-  }
-
   onGenderSelect(e) {
     console.log(e.target.value);
     this.registerForm.controls.gender.setValue(e.target.value);
+  }
+
+  onUpload(event) {
+    const file = event.target.files[0];
+    this.imageObj = file;
+    console.log(this.imageObj);
+  }
+  onImageUpload(event: Event) {
+    console.log('In onImageUpload start..');
+    const formData = new FormData();
+    formData.append('image', this.imageObj);
+    console.log(formData);
+    this.imageService.imageUpload(formData);
+    console.log('In onImageUpload End..');
   }
 }
