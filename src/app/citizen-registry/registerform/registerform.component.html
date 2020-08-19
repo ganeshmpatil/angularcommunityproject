@@ -9,6 +9,7 @@
       placeholder="Upload Image"
     />
     <button (click)="onImageUpload($event)">Upload Image</button>
+    <img [src]="imageUrl" />
   </div>
 </div>
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CitizenregistrationService } from '../citizenregistration.service';
 import { ImageuploadserviceService } from '../../shared/imageuploadservice.service';
+import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-registerform',
@@ -9,10 +12,23 @@ import { ImageuploadserviceService } from '../../shared/imageuploadservice.servi
   styleUrls: ['./registerform.component.css'],
 })
 export class RegisterformComponent implements OnInit {
-  imageSrc: string;
+  constructor(
+    private userService: CitizenregistrationService,
+    private imageService: ImageuploadserviceService,
+    private socket: Socket
+  ) {}
+  public messages: Subject<any>;
+  wsurl: string = 'ws://localhost:3000/';
+  imageSrc: string | ArrayBuffer;
   genderList: any = ['Male', 'Female'];
   imageObj: File;
   imageUrl: string;
+  imageFileName: string;
+
+  private message = {
+    author: 'tutorialedge',
+    message: 'this is a test message',
+  };
 
   registerForm = new FormGroup({
     userid: new FormControl('', [Validators.required]),
@@ -36,10 +52,6 @@ export class RegisterformComponent implements OnInit {
     education_degree: new FormControl('', []),
     user_summary: new FormControl('', []),
   });
-  constructor(
-    private userService: CitizenregistrationService,
-    private imageService: ImageuploadserviceService
-  ) {}
 
   ngOnInit(): void {}
 
@@ -60,15 +72,36 @@ export class RegisterformComponent implements OnInit {
 
   onUpload(event) {
     const file = event.target.files[0];
+    this.imageFileName = file.name;
+    console.log('File is ' + file);
     this.imageObj = file;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      this.imageSrc = reader.result;
+    };
     console.log(this.imageObj);
   }
   onImageUpload(event: Event) {
     console.log('In onImageUpload start..');
-    const formData = new FormData();
-    formData.append('image', this.imageObj);
-    console.log(formData);
-    this.imageService.imageUpload(formData);
+    /* const formData = new FormData();
+    formData.append('image', this.imageObj); */
+
+    /* this.messages = <Subject<any>>this.imageService.connect(this.wsurl).pipe(
+      map((response: MessageEvent): any => {
+        console.log(response);
+        return { name: 'ganesh' };
+      })
+    );
+    this.messages.subscribe((msg) => {
+      console.log('Response from websocket: ' + msg);
+    });
+    this.messages.next(this.message); */
+
+    this.socket.emit('addimage', {
+      name: this.imageFileName,
+      src: this.imageSrc,
+    });
     console.log('In onImageUpload End..');
   }
 }
