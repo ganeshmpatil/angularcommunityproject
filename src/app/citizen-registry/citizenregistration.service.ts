@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CitizenregistrationService {
   createUserPath: string = 'http://localhost:3000/user';
-  getUsersPath: string = 'http://localhost:3000/users';
+  getUsersPath: string = 'http://localhost:3000/users/';
+  getUserPath: string = 'http://localhost:3000/user/';
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +18,12 @@ export class CitizenregistrationService {
     );
   }
 
-  getAllUsers() {
-    return this.http.get<any[]>(this.getUsersPath);
+  getAllUsers(excludeuserid) {
+    return this.http.get<any[]>(this.getUsersPath + excludeuserid);
+  }
+
+  getUser(userId) {
+    console.log('USer id :- ' + userId);
+    return this.http.get<any[]>(this.getUserPath + userId);
   }
 }

@@ -1,13 +1,31 @@
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" [src]="image" alt="Card image cap" />
+  <img class="card-img-top" [src]="imagePath" alt="Card image cap" />
   <div class="card-body">
-    <h5 class="card-title">{{ firstName }} {{ lastName }}</h5>
+    <h5 class="card-title">
+      {{ userDetails.first_name }} {{ userDetails.last_name }}
+    </h5>
     <p class="card-text"></p>
-    <div>Father Name : {{ fatherName }}</div>
-    <div>Village Name : {{ villageName }}</div>
-    <div>Address : {{ address }}</div>
-    <div>Mobile Number : {{ mobileNumber }}</div>
-    <div>Email Id : {{ emailId }}</div>
-    <div>Education : {{ education }}</div>
+    <div>Father Name : {{ userDetails.father_full_name }}</div>
+    <div>Village Name : {{ userDetails.village_name }}</div>
+    <div>
+      Address :
+      {{
+        userDetails.address_line_1 +
+          "," +
+          userDetails.address_line_2 +
+          "," +
+          userDetails.address_line_3 +
+          "," +
+          userDetails.suburb_taluka +
+          "," +
+          userDetails.city +
+          "," +
+          userDetails.state_name
+      }}
+    </div>
+    <div>Mobile Number : {{ userDetails.mobile_number }}</div>
+    <div>Email Id : {{ userDetails.email_id }}</div>
+    <div>Education : {{ userDetails.education_degree }}</div>
+    <button *ngIf="showUpdateButton" (click)="showUpdateForm()">Update</button>
   </div>
 </div>

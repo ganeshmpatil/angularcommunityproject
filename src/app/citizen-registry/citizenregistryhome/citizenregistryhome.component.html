@@ -1,31 +1,18 @@
 <!-- <app-registerform></app-registerform> -->
 <button (click)="showRegistrationForm()">Register</button>
+
 <div>
-  <ng-container *ngFor="let item of allUserDetails">
+  <ng-container *ngIf="loggedInUSerDetails">
     <div>
       <app-citizencard
-        [firstName]="item.first_name"
-        [lastName]="item.last_name"
-        [fatherName]="item.father_full_name"
-        [mobileNumber]="item.mobile_number"
-        [address]="
-          item.address_line_1 +
-          ',' +
-          item.address_line_2 +
-          ',' +
-          item.address_line_3 +
-          ',' +
-          item.suburb_taluka +
-          ',' +
-          item.city +
-          ',' +
-          item.state_name
-        "
-        image=""
-        [emailId]="item.email_id"
-        [villageName]="item.village_name"
-        [education]="item.education_degree"
+        [userDetails]="loggedInUSerDetails"
+        [showUpdateButton]="true"
       ></app-citizencard>
+    </div>
+  </ng-container>
+  <ng-container *ngFor="let item of allUserDetails">
+    <div>
+      <app-citizencard [userDetails]="item"></app-citizencard>
     </div>
   </ng-container>
 </div>

@@ -18,7 +18,7 @@
       label="Login id / लॉगिन आईडी"
       [control]="registerForm.get('userid')"
     ></app-input>
-    <div class="field">
+    <div class="field" *ngIf="!isUpdateMode()">
       <label class="label">Password / संकेतशब्द</label>
       <div class="control">
         <input
@@ -58,7 +58,7 @@
       [control]="registerForm.get('father_full_name')"
     ></app-input>
 
-    <div class="form-group">
+    <div class="form-group" *ngIf="!isUpdateMode()">
       <label for="gender">Gender:</label>
       <select
         (change)="onGenderSelect($event)"
@@ -142,7 +142,9 @@
     <button class="button is-warning" type="button" (click)="onResetClick()">
       Reset
     </button>
+    <button class="button is-warning" type="button" (click)="onCancelClick()">
+      Cancel
+    </button>
   </div>
 </form>
 <hr />
-<div>Form Contents: {{ registerForm.value | json }}</div>
