@@ -5,25 +5,42 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CitizenregistrationService {
-  createUserPath: string = 'http://localhost:3000/user';
+  createUpdateUserPath: string = 'http://localhost:3000/user';
   getUsersPath: string = 'http://localhost:3000/users/';
   getUserPath: string = 'http://localhost:3000/user/';
+  getCountPath: string = 'http://localhost:3000/userscount';
 
   constructor(private http: HttpClient) {}
 
   saveUser(user) {
-    this.http.post(this.createUserPath, user).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    );
+   return this.http.post(this.createUpdateUserPath, user);
   }
 
-  getAllUsers(excludeuserid) {
-    return this.http.get<any[]>(this.getUsersPath + excludeuserid);
+  updateUser(user) {
+    return this.http.put(this.createUpdateUserPath, user);
+  }
+
+  getAllUsers(excludeuserid, pageNumber, itemsPerPage) {
+    console.log(
+      'getAllUsers path' +
+        this.getUsersPath +
+        excludeuserid +
+        '/' +
+        pageNumber +
+        '/' +
+        itemsPerPage
+    );
+    return this.http.get<any[]>(
+      this.getUsersPath + excludeuserid + '/' + pageNumber + '/' + itemsPerPage
+    );
   }
 
   getUser(userId) {
     console.log('USer id :- ' + userId);
     return this.http.get<any[]>(this.getUserPath + userId);
+  }
+
+  getCount() {
+    return this.http.get<any[]>(this.getCountPath);
   }
 }

@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class DataProvider {
-  data: any = {
+  public data: { password: string } = {
     password: '',
   };
-  constructor(){};
+  constructor() {}
+
+  public setData(passwordparam: string) {
+    this.data = { password: passwordparam };
+  }
 }

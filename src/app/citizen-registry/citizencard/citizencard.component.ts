@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { DataProvider } from '../../shared/data-provider';
 
 @Component({
   selector: 'app-citizencard',
@@ -12,7 +13,7 @@ export class CitizencardComponent implements OnInit {
   imagePath: String =
     'https://images.unsplash.com/photo-1598051384298-be3722a51e34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private dataProvider: DataProvider) {}
 
   ngOnInit(): void {}
 
@@ -38,6 +39,8 @@ export class CitizencardComponent implements OnInit {
         pin_code: this.userDetails.pin_code,
       },
     };
+
+    this.dataProvider.setData(this.userDetails.user_password);
     this.router.navigate(['registry/home/registrationform'], navigationExtras);
   }
 }

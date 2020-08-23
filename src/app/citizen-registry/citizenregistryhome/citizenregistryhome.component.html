@@ -16,3 +16,15 @@
     </div>
   </ng-container>
 </div>
+
+<nav>
+  <ul class="pagination">
+    <li
+      class="page-item"
+      *ngFor="let page of numberOfPages; let i = index"
+      [ngClass]="page === 2 ? 'active' : ''"
+    >
+      <a (click)="loadPage(i+1)"class="page-link">{{ i + 1 }}</a>
+    </li>
+  </ul>
+</nav>

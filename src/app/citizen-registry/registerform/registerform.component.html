@@ -18,13 +18,23 @@
       label="Login id / लॉगिन आईडी"
       [control]="registerForm.get('userid')"
     ></app-input>
-    <div class="field" *ngIf="!isUpdateMode()">
+    <div class="field">
       <label class="label">Password / संकेतशब्द</label>
       <div class="control">
         <input
           type="password"
           class="form-control"
-          [formControl]="registerForm.get('password')"
+          [formControl]="registerForm.get('user_password')"
+        />
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Confirm Password / संकेतशब्द</label>
+      <div class="control">
+        <input
+          type="password"
+          class="form-control"
+          [formControl]="registerForm.get('user_confirm_password')"
         />
       </div>
     </div>

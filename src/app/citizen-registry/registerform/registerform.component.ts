@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Socket } from 'ngx-socket-io';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DataProvider } from '../../shared/data-provider';
 
 @Component({
   selector: 'app-registerform',
@@ -19,11 +20,11 @@ export class RegisterformComponent implements OnInit {
     private imageService: ImageuploadserviceService,
     private socket: Socket,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private dataProvider: DataProvider
   ) {
     this.route.queryParams.subscribe((params) => {
       if (params['userid'] !== undefined) {
-        console.log('Received params' + params);
         this.registerForm.get('userid').setValue(params['userid']);
         this.registerForm.get('last_name').setValue(params['last_name']);
         this.registerForm.get('first_name').setValue(params['first_name']);
@@ -64,6 +65,10 @@ export class RegisterformComponent implements OnInit {
         this.registerForm.get('village_name').setValue(params['village_name']);
         this.registerForm.get('user_summary').setValue(params['user_summary']);
         this.mode = 'UPDATE';
+        console.log('password is ' + this.dataProvider.data.password);
+        this.registerForm
+          .get('user_password')
+          .setValue(this.dataProvider.data.password);
       }
     });
   }
@@ -79,11 +84,12 @@ export class RegisterformComponent implements OnInit {
 
   registerForm = new FormGroup({
     userid: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
+    user_password: new FormControl('', [Validators.required]),
+    user_confirm_password: new FormControl('', [Validators.required]),
     first_name: new FormControl('', [Validators.required]),
     last_name: new FormControl('', [Validators.required]),
     father_full_name: new FormControl('', [Validators.required]),
-    gender: new FormControl('', [Validators.required]),
+    gender: new FormControl(''),
     mobile_number: new FormControl('', [Validators.required]),
     email_id: new FormControl('', []),
     village_name: new FormControl('', [Validators.required]),
@@ -105,7 +111,17 @@ export class RegisterformComponent implements OnInit {
   onSubmit() {
     this.registerForm.value['status'] = 'A';
     console.log(this.registerForm.value);
-    this.userService.saveUser(this.registerForm.value);
+    if (!this.isUpdateMode) {
+      this.userService.saveUser(this.registerForm.value).subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
+    } else {
+      this.userService.updateUser(this.registerForm.value).subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
+    }
   }
 
   onResetClick() {
