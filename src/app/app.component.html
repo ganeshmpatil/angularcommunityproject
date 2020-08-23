@@ -1,3 +1,17 @@
+<div *ngFor="let language of languages">
+  <label for="language_{{ language.localeId }}">
+    <input
+      id="language_{{ language.localeId }}"
+      [value]="language.localeId"
+      type="radio"
+      name="language"
+      [checked]="localeId == language.localeId"
+      (change)="languageSelected($event, language)"
+    />
+    {{ language.name }}
+  </label>
+</div>
+<label for="firstName">{{ resources.FirstName }}</label>
 <body class="bg">
   <div class="container">
     <div class="header row">
