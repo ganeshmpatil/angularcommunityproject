@@ -11,32 +11,47 @@
     {{ language.name }}
   </label>
 </div>
-<label for="firstName">{{ resources.FirstName }}</label>
 <body class="bg">
   <div class="container">
     <div class="header row">
       <div class="col-sm">
         <img
           class="img-responsive img-thumbnail"
-          style="width: 20%;"
+          style="width: 20%"
           src="../assets/ganesh.jpg"
         />
       </div>
       <div class="col-sm bannername">
-        <h1>दोडे गुर्जर समाज</h1>
+        <h1>{{ resources.DodeGurjarLabel }}</h1>
       </div>
     </div>
   </div>
 
   <ul class="nav justify-content-center">
-    <li *ngFor="let menuElement of menuElements" class="nav-item">
-      <a
-        class="nav-link"
-        routerLink="/registry/home"
-        routerLinkActive="active"
-        >{{ menuElement.name }}</a
-      >
-    </li>
+    <a class="nav-link" routerLink="/registry/home" routerLinkActive="active">{{
+      resources.CommunityModuleLabel
+    }}</a>
+    <a
+      class="nav-link"
+      routerLink="/matrimony/home"
+      routerLinkActive="active"
+      >{{ resources.MatrimonyModuleLabel }}</a
+    >
+
+    <a class="nav-link" routerLink="/trade/home" routerLinkActive="active">{{
+      resources.TradeModuleLabel
+    }}</a>
+
+    <a
+      class="nav-link"
+      routerLink="/blooddetails/home"
+      routerLinkActive="active"
+      >{{ resources.BloodModuleLabel }}</a
+    >
+
+    <a class="nav-link" routerLink="/articles/home" routerLinkActive="active">{{
+      resources.ArticlesModuleLabel
+    }}</a>
   </ul>
 
   <router-outlet></router-outlet>

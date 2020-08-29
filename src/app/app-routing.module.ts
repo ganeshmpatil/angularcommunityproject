@@ -9,6 +9,26 @@ const routes: Routes = [
         (m) => m.CitizenRegistryModule
       ),
   },
+  {
+    path: 'matrimony',
+    loadChildren: () =>
+      import('./matrimony/matrimony.module').then((m) => m.MatrimonyModule),
+  },
+  {
+    path: 'trade',
+    loadChildren: () =>
+      import('./trade/trade.module').then((m) => m.TradeModule),
+  },
+  {
+    path: 'blooddetails',
+    loadChildren: () =>
+      import('./blood/blood.module').then((m) => m.BloodModule),
+  },
+  {
+    path: 'articles',
+    loadChildren: () =>
+      import('./articles/articles.module').then((m) => m.ArticlesModule),
+  },
 ];
 
 @NgModule({

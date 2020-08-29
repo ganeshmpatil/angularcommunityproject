@@ -15,11 +15,11 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <app-input
-      label="Login id / लॉगिन आईडी"
+      label="{{ resources.LoginId }}"
       [control]="registerForm.get('userid')"
     ></app-input>
     <div class="field">
-      <label class="label">Password / संकेतशब्द</label>
+      <label class="label">{{ resources.Password }}</label>
       <div class="control">
         <input
           type="password"
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="field">
-      <label class="label">Confirm Password / संकेतशब्द</label>
+      <label class="label">{{ resources.ConfirmPassword }}</label>
       <div class="control">
         <input
           type="password"
@@ -40,12 +40,12 @@
     </div>
 
     <app-input
-      label="First Name / पहिले नाव"
+      label="{{ resources.FirstName }}"
       [control]="registerForm.get('first_name')"
     ></app-input>
 
     <app-input
-      label="Last Name / आडनाव"
+      label="{{ resources.LastName }}"
       [control]="registerForm.get('last_name')"
     ></app-input>
 
@@ -64,12 +64,12 @@
     </div> -->
 
     <app-input
-      label="Father's Name / वडिलांचे पूर्ण नाव"
+      label="{{ resources.FatherName }}"
       [control]="registerForm.get('father_full_name')"
     ></app-input>
 
     <div class="form-group" *ngIf="!isUpdateMode()">
-      <label for="gender">Gender:</label>
+      <label for="gender">{{ resources.Gender }}</label>
       <select
         (change)="onGenderSelect($event)"
         [formControl]="registerForm.get('gender')"
@@ -81,59 +81,62 @@
     </div>
 
     <app-input
-      label="मोबाइल नंबर"
+      label="{{ resources.MobileNumber }}"
       [control]="registerForm.get('mobile_number')"
     ></app-input>
 
     <app-input
-      label="ई-मेल आयडी"
+      label="{{ resources.Email }}"
       [control]="registerForm.get('email_id')"
     ></app-input>
 
     <app-input
-      label="गावचे नाव"
+      label="{{ resources.VillageName }}"
       [control]="registerForm.get('village_name')"
     ></app-input>
 
     <app-input
-      label="पत्ता लाइन 1"
+      label="{{ resources.AddressLine1 }}"
       [control]="registerForm.get('address_line_1')"
     ></app-input>
 
     <app-input
-      label="पत्ता लाइन 2"
+      label="{{ resources.AddressLine2 }}"
       [control]="registerForm.get('address_line_2')"
     ></app-input>
 
     <app-input
-      label="पत्ता लाइन 3"
+      label="{{ resources.AddressLine3 }}"
       [control]="registerForm.get('address_line_3')"
     ></app-input>
 
     <app-input
-      label="उपनगर / तालुका"
+      label="{{ resources.Suburb }}"
       [control]="registerForm.get('suburb_taluka')"
     ></app-input>
 
-    <app-input label="शहर" [control]="registerForm.get('city')"></app-input>
+    <app-input
+      label="{{ resources.City }}"
+      [control]="registerForm.get('city')"
+    ></app-input>
 
     <app-input
-      label="राज्याचे नाव"
+      label="{{ resources.State }}"
       [control]="registerForm.get('state_name')"
     ></app-input>
 
     <app-input
-      label="पिन कोड"
+      label="{{ resources.Pin }}"
       [control]="registerForm.get('pin_code')"
     ></app-input>
 
     <app-input
-      label="शैक्षणिक पदवी"
+      label="{{ resources.EducationDegree }}"
       [control]="registerForm.get('education_degree')"
     ></app-input>
 
     <div class="field">
-      <label class="label">Summary / सारांश</label>
+      <label class="label">{{ resources.Summary }}</label>
       <div class="control">
         <textarea
           class="form-control"
@@ -147,13 +150,13 @@
       [disabled]="registerForm.invalid"
       type="submit"
     >
-      Submit
+      {{ resources.Submit }}
     </button>
     <button class="button is-warning" type="button" (click)="onResetClick()">
-      Reset
+      {{ resources.Reset }}
     </button>
     <button class="button is-warning" type="button" (click)="onCancelClick()">
-      Cancel
+      {{ resources.Cancel }}
     </button>
   </div>
 </form>

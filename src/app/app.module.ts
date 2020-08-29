@@ -6,7 +6,7 @@ import localeMrExtra from '@angular/common/locales/extra/mr';
 import { registerLocaleData } from '@angular/common';
 import { Resources } from './resources';
 import { LocaleHelper } from './locale.helper';
-
+import { EventPublishService } from './event-publish.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterhomeComponent } from './footer/footerhome/footerhome.component';
@@ -15,6 +15,8 @@ import { ContactusComponent } from './footer/contactus/contactus.component';
 import { CopyrightComponent } from './footer/copyright/copyright.component';
 import { CitizenRegistryModule } from './citizen-registry/citizen-registry.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MenuConfig } from './shared/menu-config';
+import { Observable, Subject } from 'rxjs';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
@@ -38,20 +40,20 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor() {
+  constructor(eventPublishService: EventPublishService) {
     registerLocaleData(localeMr, 'mr', localeMrExtra);
     import(
       `../assets/resources.${LocaleHelper.getCurrentLocale().toLowerCase()}.js`
     ).then((r) => {
+      console.log('Setting resources values...');
       // Load `Resources` with values.
       for (const key in r.resources) {
-        console.log('App Module ' + key);
         if (r.resources.hasOwnProperty(key)) {
           Resources[key] = r.resources[key];
         }
       }
-
-      // Is the current language right to left?
+      eventPublishService.sendResourceBundleLoadEvent();
+      console.log('Matrimony module label ..' + Resources.MatrimonyModuleLabel);
     });
   }
 }

@@ -13,7 +13,7 @@ export class CitizenregistrationService {
   constructor(private http: HttpClient) {}
 
   saveUser(user) {
-   return this.http.post(this.createUpdateUserPath, user);
+    return this.http.post(this.createUpdateUserPath, user);
   }
 
   updateUser(user) {
@@ -21,15 +21,6 @@ export class CitizenregistrationService {
   }
 
   getAllUsers(excludeuserid, pageNumber, itemsPerPage) {
-    console.log(
-      'getAllUsers path' +
-        this.getUsersPath +
-        excludeuserid +
-        '/' +
-        pageNumber +
-        '/' +
-        itemsPerPage
-    );
     return this.http.get<any[]>(
       this.getUsersPath + excludeuserid + '/' + pageNumber + '/' + itemsPerPage
     );

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { MenuConfig } from './shared/menu-config';
 import { LocalizedComponent } from './localized.component';
 import { LocaleHelper } from './locale.helper';
+import { Resources } from './resources';
+import { EventPublishService } from './event-publish.service';
 
 @Component({
   selector: 'app-root',
@@ -16,13 +17,16 @@ export class AppComponent extends LocalizedComponent {
     { name: 'English', localeId: 'en-US' },
     { name: 'मराठी', localeId: 'mr' },
   ];
-  constructor(private meta: Meta) {
+  constructor(
+    private meta: Meta,
+    private eventPublishService: EventPublishService
+  ) {
     super();
+    this.resources = Resources;
     this.meta.addTags(
       [{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
       true
     );
-    this.menuElements = new MenuConfig().data;
   }
 
   public languageSelected($event, language: Language): void {

@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { Socket } from 'ngx-socket-io';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataProvider } from '../../shared/data-provider';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-registerform',
@@ -15,6 +16,7 @@ import { DataProvider } from '../../shared/data-provider';
 })
 export class RegisterformComponent implements OnInit {
   @Input() mode: 'CREATE' | 'UPDATE' = 'CREATE';
+  resources = Resources;
   constructor(
     private userService: CitizenregistrationService,
     private imageService: ImageuploadserviceService,

@@ -1,4 +1,30 @@
 export abstract class Resources {
-    public static FirstName: string = null;
-    public static LastName: string = null;
+  public static LoginId: string = null;
+  public static LastName: string = null;
+  public static FirstName: string = null;
+  public static Password: string = null;
+  public static ConfirmPassword: string = null;
+  public static FatherName: string = null;
+  public static Gender: string = null;
+  public static MobileNumber: string = null;
+  public static Email: string = null;
+  public static VillageName: string = null;
+  public static AddressLine1: string = null;
+  public static AddressLine2: string = null;
+  public static AddressLine3: string = null;
+  public static Suburb: string = null;
+  public static City: string = null;
+  public static State: string = null;
+  public static Pin: string = null;
+  public static EducationDegree: string = null;
+  public static Summary: string = null;
+  public static Submit: string = null;
+  public static Cancel: string = null;
+  public static Reset: string = null;
+  public static DodeGurjarLabel: string = null;
+  public static CommunityModuleLabel: string = null;
+  public static MatrimonyModuleLabel: string = null;
+  public static TradeModuleLabel: string = null;
+  public static BloodModuleLabel: string = null;
+  public static ArticlesModuleLabel: string = null;
 }

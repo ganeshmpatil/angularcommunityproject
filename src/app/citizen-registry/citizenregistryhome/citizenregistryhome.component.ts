@@ -38,7 +38,6 @@ export class CitizenregistryhomeComponent implements OnInit {
   }
 
   getCurrentUserDetails() {
-    this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
     if (this.loginService.loginUserId) {
       this.loggedInUSerDetails = this.service
         .getUser(this.loginService.loginUserId)
