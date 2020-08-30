@@ -10,7 +10,7 @@ import { LoginService } from '../../shared/login.service';
 })
 export class CitizenregistryhomeComponent implements OnInit {
   allUserDetails: any[];
-  itemsPerPage: number = 2;
+  itemsPerPage: number = 5;
   loggedInUSerDetails: any;
   count: number;
   numberOfPages: any;
@@ -39,7 +39,7 @@ export class CitizenregistryhomeComponent implements OnInit {
 
   getCurrentUserDetails() {
     if (this.loginService.loginUserId) {
-      this.loggedInUSerDetails = this.service
+      this.service
         .getUser(this.loginService.loginUserId)
         .subscribe((response: any) => {
           if (response.length > 0) {

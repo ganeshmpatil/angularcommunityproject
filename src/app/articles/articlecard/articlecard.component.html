@@ -1,0 +1,13 @@
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" [src]="imagePath" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ articleDetail.headline }}
+    </h5>
+    <p class="card-text"></p>
+    <div>{{ articleDetail.description }}</div>
+    <div></div>
+    {{ articleDetail.userid }}
+    <button *ngIf="showUpdateButton">Update</button>
+  </div>
+</div>

@@ -1,1 +1,30 @@
-<p>articles-home works!</p>
+<!-- <app-registerform></app-registerform> -->
+<button>Register</button>
+
+<div>
+  <ng-container *ngFor="let item of loggedInUserArticleDetails">
+    <div>
+      <app-articlecard
+        [articleDetail]="item"
+        [showUpdateButton]="true"
+      ></app-articlecard>
+    </div>
+  </ng-container>
+  <ng-container *ngFor="let item of allArticlesDetails">
+    <div>
+      <app-articlecard [articleDetail]="item"></app-articlecard>
+    </div>
+  </ng-container>
+</div>
+
+<nav>
+  <ul class="pagination">
+    <li
+      class="page-item"
+      *ngFor="let page of numberOfPages; let i = index"
+      [ngClass]="page === 2 ? 'active' : ''"
+    >
+      <a (click)="loadPage(i + 1)" class="page-link">{{ i + 1 }}</a>
+    </li>
+  </ul>
+</nav>
