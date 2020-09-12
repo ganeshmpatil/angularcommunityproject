@@ -23,7 +23,7 @@ export class ArticlesHomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+    this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
     this.service.getArticlesCount().subscribe(
       (response: any) => {
         this.count = response.count;
@@ -38,6 +38,7 @@ export class ArticlesHomeComponent implements OnInit {
   }
 
   getCurrentUserArticleDetails() {
+    console.log('Logged in user' + this.loginService.loginUserId);
     if (this.loginService.loginUserId) {
       this.service
         .getArticlesByUserId(this.loginService.loginUserId)
@@ -77,5 +78,9 @@ export class ArticlesHomeComponent implements OnInit {
       this.itemsPerPage * (parseInt(pageNumber) - 1),
       this.itemsPerPage
     );
+  }
+
+  showRegistrationForm() {
+    this.router.navigate(['registrationform'], { relativeTo: this.route });
   }
 }

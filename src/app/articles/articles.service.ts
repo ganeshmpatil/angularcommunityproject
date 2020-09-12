@@ -36,6 +36,7 @@ export class ArticlesService {
   }
 
   createArticles(article) {
+    console.log('Creating articles' + article);
     return this.http.post(this.saveArtilePath, article);
   }
 

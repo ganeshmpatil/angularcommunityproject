@@ -15,6 +15,9 @@ import { LoginService } from '../../shared/login.service';
 export class RegisterComponent implements OnInit {
   @Input() mode: 'CREATE' | 'UPDATE' = 'CREATE';
   resources = Resources;
+  headline: string = '';
+  description: string = '';
+  recordnumber: any;
 
   constructor(
     private socket: Socket,
@@ -23,7 +26,17 @@ export class RegisterComponent implements OnInit {
     private articleService: ArticlesService,
     private imageService: ImageuploadserviceService,
     private loginService: LoginService
-  ) {}
+  ) {
+    this.route.queryParams.subscribe((params) => {
+      console.log('Params ' + JSON.stringify(params));
+      if (params['mode'] != undefined) {
+        this.mode = 'UPDATE';
+        this.registerForm.get('headline').setValue(params['headline']);
+        this.registerForm.get('description').setValue(params['description']);
+        this.registerForm.get('recordnumber').setValue(params['recordnumber']);
+      }
+    });
+  }
 
   ngOnInit(): void {}
 
@@ -34,26 +47,32 @@ export class RegisterComponent implements OnInit {
   imageFileName: string;
 
   registerForm = new FormGroup({
-    userid: new FormControl(this.loginService.loginUserId, []),
-    headline: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    userid: new FormControl('ganesh.patil.31@gmail.com', []),
+    headline: new FormControl(this.headline, [Validators.required]),
+    description: new FormControl(this.description, [Validators.required]),
     photo: new FormControl('', []),
-    recordnumber: new FormControl('1', []),
+    recordnumber: new FormControl(this.recordnumber, []),
   });
 
   onSubmit() {
     this.registerForm.value['status'] = 'A';
-    if (!this.isUpdateMode) {
+
+    if (!this.isUpdateMode()) {
       this.articleService.createArticles(this.registerForm.value).subscribe(
-        (response) => console.log(response),
+        (response) => {
+          this.router.navigate(['articles/home']);
+        },
         (error) => console.log(error)
       );
     } else {
       this.articleService.updateArticles(this.registerForm.value).subscribe(
-        (response) => console.log(response),
+        (response) => this.router.navigate(['articles/home']),
         (error) => console.log(error)
       );
     }
+  }
+  onResetClick() {
+    this.registerForm.reset();
   }
 
   isUpdateMode() {
@@ -64,7 +83,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['home']);
+    this.router.navigate(['articles/home']);
   }
 
   onUpload(event) {

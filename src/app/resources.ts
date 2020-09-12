@@ -27,4 +27,6 @@ export abstract class Resources {
   public static TradeModuleLabel: string = null;
   public static BloodModuleLabel: string = null;
   public static ArticlesModuleLabel: string = null;
+  public static ArticleHeadline: string = null;
+  public static ArticleSummary: string = null;
 }

@@ -27,4 +27,6 @@ export const resources = {
   TradeModuleLabel: "Trade Buy-Sell",
   BloodModuleLabel: "Blood Donation Register",
   ArticlesModuleLabel: "Articles",
+  ArticleHeadline: "Headline",
+  ArticleSummary: "Content",
 };

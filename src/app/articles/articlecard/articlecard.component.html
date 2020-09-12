@@ -5,9 +5,20 @@
       {{ articleDetail.headline }}
     </h5>
     <p class="card-text"></p>
-    <div>{{ articleDetail.description }}</div>
+
+    <ng-container *ngIf="articleDetail.description.length > 200; else elseBlock"
+      ><div>
+        {{ articleDetail.description | slice: 0:200 }} ...
+        <a [routerLink]="" (click)="toggleModal()">More info</a>
+      </div>
+    </ng-container>
+    <ng-template #elseBlock>{{ articleDetail.description }}</ng-template>
     <div></div>
-    {{ articleDetail.userid }}
-    <button *ngIf="showUpdateButton">Update</button>
+    Posted by :- {{ articleDetail.userid }}
+    <button *ngIf="showUpdateButton" (click)="showUpdateForm()">Update</button>
   </div>
 </div>
+
+<app-modal (dismiss)="toggleModal()" *ngIf="_showModal">
+  <app-article-detail [articleDetail]="articleDetail"></app-article-detail>
+</app-modal>

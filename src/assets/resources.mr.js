@@ -27,4 +27,6 @@ export const resources = {
   TradeModuleLabel: "खरेदी विक्री",
   BloodModuleLabel: "रक्त देणगी",
   ArticlesModuleLabel: "लेख",
+  ArticleHeadline: "सारांश",
+  ArticleSummary: "तपशील",
 };
