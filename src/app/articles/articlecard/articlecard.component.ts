@@ -37,6 +37,7 @@ export class ArticlecardComponent implements OnInit {
 
   toggleModal() {
     this._showModal = !this._showModal;
+
     console.log('Modal flag is ' + this._showModal);
   }
 }

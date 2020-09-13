@@ -1,17 +1,23 @@
-<div (click)="onDismissClick()" class="ui dimmer visible active">
-  <div (click)="$event.stopPropagation()" class="ui modal visible active">
-    <i class="close icon" (click)="onDismissClick()"></i>
-    <div class="header">
-      <ng-content select="[modalTitle]"></ng-content>
-    </div>
-    <div class="content">
-      <ng-content></ng-content>
-    </div>
-    <div class="actions actions-default">
-      <button (click)="onDismissClick()" class="ui button primary">Ok</button>
-    </div>
-    <div class="actions">
-      <ng-content select="[modalFooter]"></ng-content>
-    </div>
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <ng-content select="[modalTitle]"></ng-content>
   </div>
-</div>
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+  <!-- <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Ok
+    </button>
+  </div> -->
+  <div class="modal-footer actions actions-default">
+    <button (click)="modal.close()" class="btn btn-outline-dark">Ok</button>
+  </div>
+  <div class="actions">
+    <ng-content select="[modalFooter]"></ng-content>
+  </div>
+</ng-template>
