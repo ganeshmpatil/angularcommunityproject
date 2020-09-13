@@ -1,0 +1,21 @@
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" [src]="imagePath" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ matrimonyDetail.first_name }} {{ matrimonyDetail.last_name }}
+    </h5>
+    <p class="card-text"></p>
+    <div>
+      Name : {{ matrimonyDetail.first_name }} {{ matrimonyDetail.last_name }}
+    </div>
+    <br />
+    <div>Occupation : {{ matrimonyDetail.occupation }}</div>
+    <div>Age :{{ age }}</div>
+    <br />
+    <div>Summary : {{ matrimonyDetail.user_summary }}</div>
+    <br />
+    <div>Gotra : {{ matrimonyDetail.gotra }}</div>
+    <br />
+    <button *ngIf="showUpdateButton" (click)="showUpdateForm()">Update</button>
+  </div>
+</div>
