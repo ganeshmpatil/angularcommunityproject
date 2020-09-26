@@ -4,11 +4,13 @@ import { LoginService } from '../../shared/login.service';
 import { Resources } from '../../resources';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatrimonyService } from '../matrimony.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  providers: [DatePipe],
 })
 export class RegisterComponent implements OnInit {
   @Input() mode: 'CREATE' | 'UPDATE' = 'CREATE';
@@ -17,7 +19,8 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private loginService: LoginService,
-    private matrimonyService: MatrimonyService
+    private matrimonyService: MatrimonyService,
+    private datePipe: DatePipe
   ) {
     this.route.queryParams.subscribe((params) => {
       console.log('Params ' + JSON.stringify(params));
@@ -26,9 +29,15 @@ export class RegisterComponent implements OnInit {
         this.registerForm.get('userid').setValue(params['userid']);
         this.registerForm.get('occupation').setValue(params['occupation']);
         this.registerForm.get('user_summary').setValue(params['user_summary']);
-        this.registerForm.get('birth_date').setValue(params['birth_date']);
+        this.registerForm
+          .get('birth_date')
+          .setValue(
+            this.datePipe.transform(
+              new Date(params['birth_date']),
+              'yyyy-MM-dd'
+            )
+          );
         this.registerForm.get('gotra').setValue(params['gotra']);
-        this.registerForm.get('status').setValue('A');
       }
     });
   }

@@ -1,1 +1,16 @@
 <button (click)="showRegistrationForm()">Register</button>
+<div>
+  <ng-container *ngFor="let item of loggedinUserMatrimonyDetails">
+    <div>
+      <app-matrimonycard
+        [matrimonyDetail]="item"
+        [showUpdateButton]="true"
+      ></app-matrimonycard>
+    </div>
+  </ng-container>
+  <ng-container *ngFor="let item of allUserMatrimonyDetails">
+    <div>
+      <app-matrimonycard [matrimonyDetail]="item"></app-matrimonycard>
+    </div>
+  </ng-container>
+</div>

@@ -35,6 +35,6 @@ export class MatrimonyService {
   }
 
   getMatrimonyById(id) {
-    return this.http.get(this.getMatrimoniesByPagePath, id);
+    return this.http.get(this.getMatrimoniesByPagePath + id);
   }
 }
