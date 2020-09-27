@@ -1,0 +1,19 @@
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" [src]="" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">
+      Posted By :- {{ tradeDetails.first_name }} {{ tradeDetails.last_name }}
+    </h5>
+    <p class="card-text"></p>
+    <div>Item Name : {{ tradeDetails.item_name }}</div>
+    <br />
+    <div>Item Desc : {{ tradeDetails.item_desc }}</div>
+    <div>Contact Number :{{ tradeDetails.contact_number }}</div>
+    <br />
+    <div>Contact Email : {{ tradeDetails.contact_email }}</div>
+    <br />
+    <div>Amount : {{ tradeDetails.amount }}/-</div>
+    <br />
+    <button *ngIf="showUpdateButton" (click)="showUpdateForm()">Update</button>
+  </div>
+</div>

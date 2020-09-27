@@ -1,1 +1,16 @@
-<p>trade-home works!</p>
+<button (click)="showRegistrationForm()">Register</button>
+<div>
+  <ng-container *ngFor="let item of loggedInUserTradeDetails">
+    <div>
+      <app-tradecard
+        [tradeDetails]="item"
+        [showUpdateButton]="true"
+      ></app-tradecard>
+    </div>
+  </ng-container>
+  <ng-container *ngFor="let item of allTradeDetails">
+    <div>
+      <app-tradecard [tradeDetails]="item"></app-tradecard>
+    </div>
+  </ng-container>
+</div>

@@ -16,11 +16,11 @@ export class TradeService {
     return this.http.get<any[]>(this.getCountPath);
   }
 
-  createMatrimony(trade) {
+  createTrade(trade) {
     return this.http.post(this.createTradePath, trade);
   }
 
-  updateMatrimony(trade) {
+  updateTrade(trade) {
     return this.http.put(this.createTradePath, trade);
   }
 
