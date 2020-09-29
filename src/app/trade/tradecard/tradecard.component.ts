@@ -9,6 +9,11 @@ import { Router, NavigationExtras } from '@angular/router';
 export class TradecardComponent implements OnInit {
   @Input() tradeDetails: any;
   @Input() showUpdateButton: boolean;
+  imageSource: string[] = [
+    'https://images.unsplash.com/photo-1503174971373-b1f69850bded?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+    'https://images.unsplash.com/photo-1489171078254-c3365d6e359f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+    'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+  ];
   constructor(private router: Router) {}
 
   ngOnInit(): void {}

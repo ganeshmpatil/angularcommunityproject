@@ -1,5 +1,13 @@
 <div class="card" style="width: 18rem">
-  <img class="card-img-top" [src]="" alt="Card image cap" />
+  <div class="container">
+    <a href="http://www.google.com">
+      <img class="card-img-top" [src]="imageSource[1]" alt="Card image cap" />
+    </a>
+    <div class="text-block">
+      <h6>3 photos</h6>
+    </div>
+  </div>
+
   <div class="card-body">
     <h5 class="card-title">
       Posted By :- {{ tradeDetails.first_name }} {{ tradeDetails.last_name }}
