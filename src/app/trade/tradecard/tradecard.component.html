@@ -1,6 +1,6 @@
 <div class="card" style="width: 18rem">
   <div class="container">
-    <a href="http://www.google.com">
+    <a [routerLink]="" (click)="_showModal = true">
       <img class="card-img-top" [src]="imageSource[1]" alt="Card image cap" />
     </a>
     <div class="text-block">
@@ -25,3 +25,8 @@
     <button *ngIf="showUpdateButton" (click)="showUpdateForm()">Update</button>
   </div>
 </div>
+
+<app-modal [showModal]="true" (dismiss)="toggleModal()" *ngIf="_showModal">
+  <div modalTitle>Photo</div>
+  <app-image-list [imageList]="imageSource"></app-image-list>
+</app-modal>

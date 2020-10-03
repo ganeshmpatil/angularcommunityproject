@@ -7,9 +7,10 @@ import { TradeHomeComponent } from './trade-home/trade-home.component';
 import { RegisterComponent } from './register/register.component';
 import { TradecardComponent } from './tradecard/tradecard.component';
 import { SharedModule } from '../shared/shared.module';
+import { ImageListComponent } from './image-list/image-list.component';
 
 @NgModule({
-  declarations: [TradeHomeComponent, RegisterComponent, TradecardComponent],
+  declarations: [TradeHomeComponent, RegisterComponent, TradecardComponent, ImageListComponent],
   imports: [
     CommonModule,
     TradeRoutingModule,
