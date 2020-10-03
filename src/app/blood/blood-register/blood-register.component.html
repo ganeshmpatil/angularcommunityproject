@@ -1,0 +1,31 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <app-input
+      label="Blood Group"
+      [control]="registerForm.get('blood_group')"
+    ></app-input>
+
+    <app-input
+      label="Mobile Number"
+      [control]="registerForm.get('mobile_number')"
+    ></app-input>
+
+    <button
+      mdbBtn
+      color="primary"
+      mdbWavesEffect
+      class="button is-primary"
+      [disabled]="registerForm.invalid"
+      type="submit"
+    >
+      {{ resources.Submit }}
+    </button>
+
+    <button class="button is-warning" type="button" (click)="onResetClick()">
+      {{ resources.Reset }}
+    </button>
+    <button class="button is-warning" type="button" (click)="onCancelClick()">
+      {{ resources.Cancel }}
+    </button>
+  </div>
+</form>

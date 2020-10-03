@@ -11,11 +11,11 @@ export class BloodService {
   saveBloodDetailsPath: string = 'http://localhost:3000/blood';
   getBloodByGroupPath: string = 'http://localhost:3000/blood';
 
-  createArticles(blood) {
+  createBloodDetails(blood) {
     return this.http.post(this.saveBloodDetailsPath, blood);
   }
 
-  updateArticles(blood) {
+  updateBloodDeDetails(blood) {
     return this.http.put(this.saveBloodDetailsPath, blood);
   }
   getBloodDetailsByGroup(bloodGroupId) {

@@ -8,12 +8,21 @@ import { BloodService } from '../blood.service';
 })
 export class BloodHomeComponent implements OnInit {
   allUsersBloodDetails: any;
-  constructor(private bloodService: BloodService) {}
+  constructor(
+    private bloodService: BloodService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.bloodService.getBloodDetails().subscribe((response: any) => {
       this.allUsersBloodDetails = response;
       console.log(JSON.stringify(this.allUsersBloodDetails));
     });
+  }
+
+  showRegistrationForm() {
+    console.log('Button CLicked.');
+    this.router.navigate(['registrationform'], { relativeTo: this.route });
   }
 }
