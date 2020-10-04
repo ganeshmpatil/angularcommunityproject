@@ -16,7 +16,11 @@ import { CopyrightComponent } from './footer/copyright/copyright.component';
 import { CitizenRegistryModule } from './citizen-registry/citizen-registry.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuConfig } from './shared/menu-config';
+import { SharedModule } from './shared/shared.module';
 import { Observable, Subject } from 'rxjs';
+import { AdvertiseModule } from './advertise/advertise.module';
+import { BannerComponent } from './advertise/banner/banner.component';
+
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
@@ -33,6 +37,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     CitizenRegistryModule,
     FormsModule,
     ReactiveFormsModule,
+    AdvertiseModule,
+    SharedModule,
     SocketIoModule.forRoot(config),
   ],
   exports: [],

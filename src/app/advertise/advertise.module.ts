@@ -16,5 +16,6 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     ReactiveFormsModule,
   ],
+  exports: [BannerComponent],
 })
 export class AdvertiseModule {}

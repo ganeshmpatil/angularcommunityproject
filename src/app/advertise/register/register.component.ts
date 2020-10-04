@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
   });
 
   onCancelClick() {
-    this.router.navigate(['']);
+    this.router.navigate(['advertise/home']);
   }
 
   onResetClick() {

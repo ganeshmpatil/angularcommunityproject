@@ -9,9 +9,6 @@ import { AdvertiseService } from '../advertise.service';
 export class BannerComponent implements OnInit {
   constructor(private adService: AdvertiseService) {}
   advertises: any[];
-  images = [1, 2, 3].map(
-    () => `https://picsum.photos/900/500?random&t=${Math.random()}`
-  );
 
   ngOnInit(): void {
     this.getAdvertisements();

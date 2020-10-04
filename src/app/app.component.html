@@ -1,3 +1,4 @@
+<app-notification-list></app-notification-list>
 <div *ngFor="let language of languages">
   <label for="language_{{ language.localeId }}">
     <input
@@ -28,6 +29,7 @@
   </div>
 
   <ul class="nav justify-content-center">
+    <a class="nav-link" routerLink="/" routerLinkActive="active"> Home </a>
     <a class="nav-link" routerLink="/registry/home" routerLinkActive="active">{{
       resources.CommunityModuleLabel
     }}</a>
@@ -57,8 +59,13 @@
       >Post Advertisement</a
     >
   </ul>
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-sm"><app-banner></app-banner></div>
+      <div class="col-sm"><router-outlet></router-outlet></div>
+    </div>
+  </div>
 
-  <router-outlet></router-outlet>
   <div>
     <app-footerhome></app-footerhome>
   </div>

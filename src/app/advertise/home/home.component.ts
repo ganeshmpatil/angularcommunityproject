@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BannerComponent } from '../banner/banner.component';
 
 @Component({
@@ -7,7 +8,11 @@ import { BannerComponent } from '../banner/banner.component';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {}
+
+  showRegistrationForm() {
+    this.router.navigate(['registrationform'], { relativeTo: this.route });
+  }
 }

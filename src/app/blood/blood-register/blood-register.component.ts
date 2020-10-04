@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Resources } from '../../resources';
 import { BloodService } from '../blood.service';
 import { LoginService } from '../../shared/login.service';
+import { NotificationService } from '../../shared/notification.service';
 
 @Component({
   selector: 'app-blood-register',
@@ -15,7 +16,8 @@ export class BloodRegisterComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private bloodService: BloodService
+    private bloodService: BloodService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {}
@@ -30,6 +32,9 @@ export class BloodRegisterComponent implements OnInit {
     this.registerForm.value['status'] = 'A';
     this.bloodService.createBloodDetails(this.registerForm.value).subscribe(
       (response) => {
+        this.notificationService.addSuccess(
+          'Blood Details saved succesfully !!'
+        );
         this.router.navigate(['blooddetails/home']);
       },
       (error) => console.log(error)
