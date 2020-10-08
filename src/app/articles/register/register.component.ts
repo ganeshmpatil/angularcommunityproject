@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
     headline: new FormControl(this.headline, [Validators.required]),
     description: new FormControl(this.description, [Validators.required]),
     photo: new FormControl('', []),
-    recordnumber: new FormControl(this.recordnumber, []),
+    recordnumber: new FormControl('', []),
   });
 
   onSubmit() {

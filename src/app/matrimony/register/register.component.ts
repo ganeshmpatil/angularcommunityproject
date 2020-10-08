@@ -5,6 +5,7 @@ import { Resources } from '../../resources';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatrimonyService } from '../matrimony.service';
 import { DatePipe } from '@angular/common';
+import { NotificationService } from '../../shared/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private matrimonyService: MatrimonyService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private notificationService: NotificationService
   ) {
     this.route.queryParams.subscribe((params) => {
       console.log('Params ' + JSON.stringify(params));
@@ -59,14 +61,28 @@ export class RegisterComponent implements OnInit {
     if (!this.isUpdateMode()) {
       this.matrimonyService.createMatrimony(this.registerForm.value).subscribe(
         (response) => {
+          this.notificationService.addSuccess(
+            'Matrimony Details saved succesfully !!'
+          );
           this.router.navigate(['matrimony/home']);
         },
-        (error) => console.log(error)
+        (error) => {
+          console.log(error);
+          this.notificationService.addError('Matrimony Details save Failed !!');
+        }
       );
     } else {
       this.matrimonyService.updateMatrimony(this.registerForm.value).subscribe(
-        (response) => this.router.navigate(['matrimony/home']),
-        (error) => console.log(error)
+        (response) => {
+          this.router.navigate(['matrimony/home']);
+          this.notificationService.addSuccess(
+            'Matrimony Details updated succesfully !!'
+          );
+        },
+        (error) => {
+          console.log(error);
+          this.notificationService.addError('Matrimony Details save failed !!');
+        }
       );
     }
   }

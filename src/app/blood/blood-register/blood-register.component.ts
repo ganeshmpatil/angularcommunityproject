@@ -37,7 +37,11 @@ export class BloodRegisterComponent implements OnInit {
         );
         this.router.navigate(['blooddetails/home']);
       },
-      (error) => console.log(error)
+
+      (error) => {
+        this.notificationService.addError('Blood Details save Failed !!');
+        console.log(error);
+      }
     );
   }
 

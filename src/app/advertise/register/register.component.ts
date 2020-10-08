@@ -5,6 +5,7 @@ import { LoginService } from '../../shared/login.service';
 import { Resources } from '../../resources';
 import { Socket } from 'ngx-socket-io';
 import { AdvertiseService } from '../advertise.service';
+import { NotificationService } from '../../shared/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private advertiseService: AdvertiseService,
-    private socket: Socket
+    private socket: Socket,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {}
@@ -44,9 +46,17 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.advertiseService.createAdvertise(this.registerForm.value).subscribe(
       (response) => {
+        this.notificationService.addSuccess(
+          'Advertisement Details saved succesfully !!'
+        );
         this.router.navigate(['']);
       },
-      (error) => console.log(error)
+      (error) => {
+        console.log(error);
+        this.notificationService.addError(
+          'Advertisement Details saved failed !!'
+        );
+      }
     );
   }
 

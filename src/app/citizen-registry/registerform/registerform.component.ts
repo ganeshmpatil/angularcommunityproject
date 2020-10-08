@@ -8,6 +8,7 @@ import { Socket } from 'ngx-socket-io';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataProvider } from '../../shared/data-provider';
 import { Resources } from '../../resources';
+import { NotificationService } from '../../shared/notification.service';
 
 @Component({
   selector: 'app-registerform',
@@ -23,7 +24,8 @@ export class RegisterformComponent implements OnInit {
     private socket: Socket,
     private route: ActivatedRoute,
     private router: Router,
-    private dataProvider: DataProvider
+    private dataProvider: DataProvider,
+    private notificationService: NotificationService
   ) {
     this.route.queryParams.subscribe((params) => {
       if (params['userid'] !== undefined) {
@@ -115,13 +117,27 @@ export class RegisterformComponent implements OnInit {
     console.log(this.registerForm.value);
     if (!this.isUpdateMode) {
       this.userService.saveUser(this.registerForm.value).subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
+        (response) => {
+          this.notificationService.addSuccess(
+            'User Details saved succesfully !!'
+          );
+          this.router.navigate(['registry/home']);
+        },
+        (error) => {
+          this.notificationService.addError('User Details save Failed !!');
+        }
       );
     } else {
       this.userService.updateUser(this.registerForm.value).subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
+        (response) => {
+          this.notificationService.addSuccess(
+            'User Details updated succesfully !!'
+          );
+          this.router.navigate(['registry/home']);
+        },
+        (error) => {
+          this.notificationService.addError('User Details save failed !!');
+        }
       );
     }
   }
