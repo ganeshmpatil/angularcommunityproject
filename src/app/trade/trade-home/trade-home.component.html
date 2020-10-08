@@ -5,6 +5,7 @@
       <app-tradecard
         [tradeDetails]="item"
         [showUpdateButton]="true"
+        (deleteEvent)="refreshOnDelete()"
       ></app-tradecard>
     </div>
   </ng-container>

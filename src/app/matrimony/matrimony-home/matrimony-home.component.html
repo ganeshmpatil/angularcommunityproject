@@ -5,6 +5,7 @@
       <app-matrimonycard
         [matrimonyDetail]="item"
         [showUpdateButton]="true"
+        (deleteEvent)="refereshOnDelete()"
       ></app-matrimonycard>
     </div>
   </ng-container>

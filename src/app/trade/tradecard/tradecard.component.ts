@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { TradeService } from '../trade.service';
+import { NotificationService } from '../../shared/notification.service';
+import { NotificationListComponent } from 'src/app/shared/notification-list/notification-list.component';
 
 @Component({
   selector: 'app-tradecard',
@@ -9,13 +12,18 @@ import { Router, NavigationExtras } from '@angular/router';
 export class TradecardComponent implements OnInit {
   @Input() tradeDetails: any;
   @Input() showUpdateButton: boolean;
+  @Output() deleteEvent: EventEmitter<any> = new EventEmitter();
   _showModal: boolean;
   imageSource: string[] = [
     'https://images.unsplash.com/photo-1503174971373-b1f69850bded?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
     'https://images.unsplash.com/photo-1489171078254-c3365d6e359f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
     'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
   ];
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private tradeService: TradeService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -44,5 +52,21 @@ export class TradecardComponent implements OnInit {
 
   toggleModal() {
     this._showModal = !this._showModal;
+  }
+
+  delete() {
+    this.tradeDetails.status = 'C';
+    this.tradeService.updateTrade(this.tradeDetails).subscribe(
+      (response) => {
+        this.notificationService.addSuccess(
+          'Matrimony Details deleted succesfully !!'
+        );
+        this.deleteEvent.emit(null);
+      },
+
+      (error) => {
+        this.notificationService.addError('Matrimony Details delete failed !!');
+      }
+    );
   }
 }

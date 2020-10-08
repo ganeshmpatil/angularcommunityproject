@@ -79,4 +79,10 @@ export class MatrimonyHomeComponent implements OnInit {
   showRegistrationForm() {
     this.router.navigate(['registrationform'], { relativeTo: this.route });
   }
+
+  refereshOnDelete() {
+    console.log('refereshOnDelete called');
+    this.loggedinUserMatrimonyDetails = null;
+    this.getAllMatrimonyDetails(this.currentPage, this.itemsPerPage);
+  }
 }

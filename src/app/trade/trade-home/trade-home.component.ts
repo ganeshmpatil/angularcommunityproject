@@ -66,4 +66,9 @@ export class TradeHomeComponent implements OnInit {
   showRegistrationForm() {
     this.router.navigate(['registrationform'], { relativeTo: this.route });
   }
+
+  refreshOnDelete() {
+    this.getCurrentUserTradeDetails();
+    this.getAllTradeDetails(this.currentPage, this.itemsPerPage);
+  }
 }

@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { MatrimonyService } from '../matrimony.service';
+import { NotificationService } from '../../shared/notification.service';
+import { Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-matrimonycard',
@@ -8,13 +11,19 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class MatrimonycardComponent implements OnInit {
   @Input() matrimonyDetail: any;
+  @Output() deleteEvent: EventEmitter<any> = new EventEmitter();
   age: number;
   @Input() showUpdateButton: boolean;
+  public delete$: Subject<string>;
 
   imagePath: String =
     'https://images.unsplash.com/photo-1598051384298-be3722a51e34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private matrimonyService: MatrimonyService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     if (new Date(this.matrimonyDetail.birth_date).getFullYear() !== undefined) {
@@ -38,5 +47,23 @@ export class MatrimonycardComponent implements OnInit {
     };
 
     this.router.navigate(['matrimony/home/registrationform'], navigationExtras);
+  }
+
+  delete() {
+    this.matrimonyDetail.status = 'C';
+    this.matrimonyService.updateMatrimony(this.matrimonyDetail).subscribe(
+      (response) => {
+        this.notificationService.addSuccess(
+          'Matrimony Details deleted succesfully !!'
+        );
+        console.log(this.deleteEvent);
+        this.deleteEvent.emit(null);
+      },
+
+      (error) => {
+        this.notificationService.addError('Matrimony Details delete failed !!');
+        console.log(error);
+      }
+    );
   }
 }
