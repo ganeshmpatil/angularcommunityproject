@@ -8,7 +8,7 @@
     >
     <a
       (click)="onPreviousSetClick()"
-      *ngIf="showAdditionalNavigationOptions"
+      *ngIf="showAdditionalNavigationOptions && showPrevButton"
       class="page-link"
       >Prev</a
     >
@@ -18,13 +18,17 @@
       [ngClass]="page === currentPageNumber - 1 ? 'active' : null"
       *ngFor="let page of pagesIterator; let i = index"
     >
-      <a (click)="emitClickEvent(i + 1)" class="page-link">{{
-        this.currentPaginationRangeCounter * 5 - 5 + i + 1
-      }}</a>
+      <a
+        (click)="
+          emitClickEvent(this.currentPaginationRangeCounter * 5 - 5 + i + 1)
+        "
+        class="page-link"
+        >{{ this.currentPaginationRangeCounter * 5 - 5 + i + 1 }}</a
+      >
     </li>
     <a
       (click)="onNextSetClick()"
-      *ngIf="showAdditionalNavigationOptions"
+      *ngIf="showAdditionalNavigationOptions && showNextButton"
       class="page-link"
       >Next</a
     >

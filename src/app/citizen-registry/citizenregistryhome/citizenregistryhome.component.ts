@@ -82,7 +82,7 @@ export class CitizenregistryhomeComponent implements OnInit {
   }
 
   handlePageChange(payload) {
-    console.log('handlePageChange' + payload);
+    console.log('handlePageChange :- ' + payload);
     this.getAllUserDetails(payload, this.itemsPerPage);
   }
 }
