@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CitizenregistrationService } from '../citizenregistration.service';
 import { LoginService } from '../../shared/login.service';
+import { PaginationComponent } from '../../shared/pagination/pagination.component';
 
 @Component({
   selector: 'app-citizenregistryhome',
@@ -12,6 +13,7 @@ export class CitizenregistryhomeComponent implements OnInit {
   allUserDetails: any[];
   itemsPerPage: number = 5;
   loggedInUSerDetails: any;
+  loggedinUserId: any;
   count: number;
   numberOfPages: any;
   currentPage: number = 1;
@@ -20,12 +22,15 @@ export class CitizenregistryhomeComponent implements OnInit {
     private router: Router,
     private service: CitizenregistrationService,
     private loginService: LoginService
-  ) {}
+  ) {
+    this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
+    this.loggedinUserId = this.loginService.loginUserId;
+  }
 
   ngOnInit(): void {
     this.service.getCount().subscribe(
       (response: any) => {
-        console.log('Response count is' + JSON.stringify(response));
+        console.log('ngOnInit Response count is' + JSON.stringify(response));
         this.count = response.count;
         this.numberOfPages = Array(
           Math.ceil(this.count / this.itemsPerPage) - 1
@@ -33,7 +38,6 @@ export class CitizenregistryhomeComponent implements OnInit {
       },
       (error) => console.log(error)
     );
-    this.getCurrentUserDetails();
     this.getAllUserDetails(this.currentPage, this.itemsPerPage);
   }
 
@@ -51,7 +55,7 @@ export class CitizenregistryhomeComponent implements OnInit {
 
   getAllUserDetails(page: number, itemCountToFetch: number) {
     this.service
-      .getAllUsers(this.loginService.loginUserId, page, itemCountToFetch)
+      .getAllUsers('ganesh.patil.31@gmail.com', page, itemCountToFetch)
       .subscribe(
         (response: any) => {
           this.allUserDetails = response;
@@ -75,5 +79,10 @@ export class CitizenregistryhomeComponent implements OnInit {
       this.itemsPerPage * (parseInt(pageNumber) - 1),
       this.itemsPerPage
     );
+  }
+
+  handlePageChange(payload) {
+    console.log('handlePageChange' + payload);
+    this.getAllUserDetails(payload, this.itemsPerPage);
   }
 }

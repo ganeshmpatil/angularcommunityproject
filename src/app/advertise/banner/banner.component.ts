@@ -17,7 +17,6 @@ export class BannerComponent implements OnInit {
   getAdvertisements() {
     this.adService.getAdvertise().subscribe(
       (response) => {
-        console.log('adds are' + JSON.stringify(response));
         this.advertises = response;
       },
       (error) => console.log(error)

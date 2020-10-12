@@ -1,0 +1,38 @@
+<nav>
+  <ul class="pagination">
+    <a
+      (click)="onFirstClick()"
+      *ngIf="showAdditionalNavigationOptions"
+      class="page-link"
+      >First</a
+    >
+    <a
+      (click)="onPreviousSetClick()"
+      *ngIf="showAdditionalNavigationOptions"
+      class="page-link"
+      >Prev</a
+    >
+
+    <li
+      class="page-item"
+      [ngClass]="page === currentPageNumber - 1 ? 'active' : null"
+      *ngFor="let page of pagesIterator; let i = index"
+    >
+      <a (click)="emitClickEvent(i + 1)" class="page-link">{{
+        this.currentPaginationRangeCounter * 5 - 5 + i + 1
+      }}</a>
+    </li>
+    <a
+      (click)="onNextSetClick()"
+      *ngIf="showAdditionalNavigationOptions"
+      class="page-link"
+      >Next</a
+    >
+    <a
+      (click)="onLastClick()"
+      *ngIf="showAdditionalNavigationOptions"
+      class="page-link"
+      >Last</a
+    >
+  </ul>
+</nav>

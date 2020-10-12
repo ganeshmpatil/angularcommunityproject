@@ -20,9 +20,9 @@ export class CitizenregistrationService {
     return this.http.put(this.createUpdateUserPath, user);
   }
 
-  getAllUsers(excludeuserid, pageNumber, itemsPerPage) {
+  getAllUsers(userid, pageNumber, itemsPerPage) {
     return this.http.get<any[]>(
-      this.getUsersPath + excludeuserid + '/' + pageNumber + '/' + itemsPerPage
+      this.getUsersPath + userid + '/' + pageNumber + '/' + itemsPerPage
     );
   }
 
