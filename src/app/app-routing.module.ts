@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponentComponent } from './login-component/login-component.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
     path: 'advertise',
     loadChildren: () =>
       import('./advertise/advertise.module').then((m) => m.AdvertiseModule),
+  },
+  {
+    path: 'login',
+    component: LoginComponentComponent,
   },
 ];
 

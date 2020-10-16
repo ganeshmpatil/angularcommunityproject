@@ -1,16 +1,27 @@
 <app-notification-list></app-notification-list>
-<div *ngFor="let language of languages">
-  <label for="language_{{ language.localeId }}">
-    <input
-      id="language_{{ language.localeId }}"
-      [value]="language.localeId"
-      type="radio"
-      name="language"
-      [checked]="localeId == language.localeId"
-      (change)="languageSelected($event, language)"
-    />
-    {{ language.name }}
-  </label>
+<div class="container">
+  <div class="header row">
+    <div class="col-sm">
+      <div *ngFor="let language of languages">
+        <label for="language_{{ language.localeId }}">
+          <input
+            id="language_{{ language.localeId }}"
+            [value]="language.localeId"
+            type="radio"
+            name="language"
+            [checked]="localeId == language.localeId"
+            (change)="languageSelected($event, language)"
+          />
+          {{ language.name }}
+        </label>
+      </div>
+    </div>
+    <div class="col-sm">
+      <a class="nav-link" routerLink="/login" routerLinkActive="active"
+        >Login</a
+      >
+    </div>
+  </div>
 </div>
 <body class="bg">
   <div class="container">

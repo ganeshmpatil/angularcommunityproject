@@ -24,13 +24,14 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private advertiseService: AdvertiseService,
     private socket: Socket,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {}
 
   registerForm = new FormGroup({
-    userid: new FormControl('ganesh.patil.31@gmail.com', []),
+    userid: new FormControl(this.loginService.loginUserId, []),
     photo: new FormControl('', [Validators.required]),
     status: new FormControl('A', []),
   });
