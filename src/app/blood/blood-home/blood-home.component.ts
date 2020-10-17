@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BloodService } from '../blood.service';
+import { LoginService } from '../../shared/login.service';
 @Component({
   selector: 'app-blood-home',
   templateUrl: './blood-home.component.html',
@@ -11,7 +12,8 @@ export class BloodHomeComponent implements OnInit {
   constructor(
     private bloodService: BloodService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
@@ -24,5 +26,15 @@ export class BloodHomeComponent implements OnInit {
   showRegistrationForm() {
     console.log('Button CLicked.');
     this.router.navigate(['registrationform'], { relativeTo: this.route });
+  }
+  isUserLoggedIn() {
+    if (
+      this.loginService.loginUserId !== null &&
+      this.loginService.loginUserId !== undefined
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

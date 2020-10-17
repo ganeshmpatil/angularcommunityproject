@@ -23,7 +23,6 @@ export class CitizenregistryhomeComponent implements OnInit {
     private service: CitizenregistrationService,
     private loginService: LoginService
   ) {
-    this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
     this.loggedinUserId = this.loginService.loginUserId;
   }
 
@@ -55,7 +54,7 @@ export class CitizenregistryhomeComponent implements OnInit {
 
   getAllUserDetails(page: number, itemCountToFetch: number) {
     this.service
-      .getAllUsers('ganesh.patil.31@gmail.com', page, itemCountToFetch)
+      .getAllUsers(this.loginService.loginUserId, page, itemCountToFetch)
       .subscribe(
         (response: any) => {
           this.allUserDetails = response;

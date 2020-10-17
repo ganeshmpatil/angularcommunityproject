@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
   imageFileName: string;
 
   registerForm = new FormGroup({
-    userid: new FormControl('ganesh.patil.31@gmail.com', []),
+    userid: new FormControl(this.loginService.loginUserId, []),
     headline: new FormControl(this.headline, [Validators.required]),
     description: new FormControl(this.description, [Validators.required]),
     photo: new FormControl('', []),

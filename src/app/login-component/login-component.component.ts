@@ -53,6 +53,7 @@ export class LoginComponentComponent implements OnInit {
             this.loginStatus.loginUserId = this.f.username.value;
           } else {
             this.loading = false;
+            this.loginStatus.loginUserId = undefined;
             this.notificationService.addError('Invalid User Name / Password');
           }
         },

@@ -21,7 +21,6 @@ export class TradeHomeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
     this.loggedinUserId = this.loginService.loginUserId;
     this.getAllTradeDetails(this.currentPage, this.itemsPerPage);
   }
@@ -64,5 +63,15 @@ export class TradeHomeComponent implements OnInit {
   handlePageChange(payload) {
     console.log('handlePageChange :- ' + payload);
     this.getAllTradeDetails(payload, this.itemsPerPage);
+  }
+  isUserLoggedIn() {
+    if (
+      this.loginService.loginUserId !== null &&
+      this.loginService.loginUserId !== undefined
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

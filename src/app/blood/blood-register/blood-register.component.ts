@@ -17,13 +17,14 @@ export class BloodRegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private bloodService: BloodService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {}
 
   registerForm = new FormGroup({
-    userid: new FormControl('ganesh.patil.31@gmail.com', []),
+    userid: new FormControl(this.loginService.loginUserId, []),
     blood_group: new FormControl('', [Validators.required]),
     mobile_number: new FormControl('', [Validators.required]),
   });

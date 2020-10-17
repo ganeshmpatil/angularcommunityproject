@@ -21,12 +21,10 @@ export class MatrimonyHomeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
     this.loggedinUserId = this.loginService.loginUserId;
   }
 
   ngOnInit(): void {
-    this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
     this.getCount();
     this.getAllMatrimonyDetails(this.currentPage, this.itemsPerPage);
   }
@@ -67,5 +65,16 @@ export class MatrimonyHomeComponent implements OnInit {
   handlePageChange(payload) {
     console.log('handlePageChange :- ' + payload);
     this.getAllMatrimonyDetails(payload, this.itemsPerPage);
+  }
+
+  isUserLoggedIn() {
+    if (
+      this.loginService.loginUserId !== null &&
+      this.loginService.loginUserId !== undefined
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -1,5 +1,7 @@
 <!-- <app-registerform></app-registerform> -->
-<button (click)="showRegistrationForm()">Register</button>
+<button (click)="showRegistrationForm()" *ngIf="isUserLoggedIn()">
+  Register
+</button>
 
 <div>
   <ng-container *ngFor="let item of allArticlesDetails">

@@ -21,7 +21,6 @@ export class ArticlesHomeComponent implements OnInit {
     private service: ArticlesService,
     private loginService: LoginService
   ) {
-    this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
     this.loggedinUserId = this.loginService.loginUserId;
   }
 
@@ -69,5 +68,16 @@ export class ArticlesHomeComponent implements OnInit {
     console.log('refereshOnDelete called');
     this.getCount();
     this.getAllArticleDetails(this.currentPage, this.itemsPerPage);
+  }
+
+  isUserLoggedIn() {
+    if (
+      this.loginService.loginUserId !== null &&
+      this.loginService.loginUserId !== undefined
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
