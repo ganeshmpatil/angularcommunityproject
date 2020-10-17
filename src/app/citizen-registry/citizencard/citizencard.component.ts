@@ -10,8 +10,6 @@ import { DataProvider } from '../../shared/data-provider';
 export class CitizencardComponent implements OnInit {
   @Input() showUpdateButton: boolean = false;
   @Input() userDetails: any;
-  imagePath: String =
-    'https://images.unsplash.com/photo-1598051384298-be3722a51e34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80';
 
   constructor(private router: Router, private dataProvider: DataProvider) {}
 

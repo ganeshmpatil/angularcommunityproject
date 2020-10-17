@@ -1,17 +1,20 @@
 <button (click)="showRegistrationForm()">Register</button>
 <div>
-  <ng-container *ngFor="let item of loggedinUserMatrimonyDetails">
+  <ng-container *ngFor="let item of allUserMatrimonyDetails">
     <div>
       <app-matrimonycard
         [matrimonyDetail]="item"
-        [showUpdateButton]="true"
+        [showUpdateButton]="item.userid === loggedinUserId ? true : false"
         (deleteEvent)="refereshOnDelete()"
       ></app-matrimonycard>
     </div>
   </ng-container>
-  <ng-container *ngFor="let item of allUserMatrimonyDetails">
-    <div>
-      <app-matrimonycard [matrimonyDetail]="item"></app-matrimonycard>
-    </div>
-  </ng-container>
+</div>
+<div>
+  <app-pagination
+    *ngIf="count !== undefined && count > 0"
+    [count]="count"
+    [numberOfItemsPerPage]="itemsPerPage"
+    (clickEvent)="handlePageChange($event)"
+  ></app-pagination>
 </div>

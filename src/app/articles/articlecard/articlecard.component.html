@@ -1,5 +1,5 @@
 <div class="card" style="width: 18rem">
-  <img class="card-img-top" [src]="imagePath" alt="Card image cap" />
+  <img class="card-img-top" [src]="articleDetail.photo" alt="Card image cap" />
   <div class="card-body">
     <h5 class="card-title">
       {{ articleDetail.headline }}
@@ -16,6 +16,7 @@
     <div></div>
     Posted by :- {{ articleDetail.userid }}
     <button *ngIf="showUpdateButton" (click)="showUpdateForm()">Update</button>
+    <button *ngIf="showUpdateButton" (click)="delete()">Delete</button>
   </div>
 </div>
 

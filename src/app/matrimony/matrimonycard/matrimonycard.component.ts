@@ -16,9 +16,6 @@ export class MatrimonycardComponent implements OnInit {
   @Input() showUpdateButton: boolean;
   public delete$: Subject<string>;
 
-  imagePath: String =
-    'https://images.unsplash.com/photo-1598051384298-be3722a51e34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80';
-
   constructor(
     private router: Router,
     private matrimonyService: MatrimonyService,

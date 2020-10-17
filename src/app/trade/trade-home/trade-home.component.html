@@ -1,17 +1,20 @@
 <button (click)="showRegistrationForm()">Register</button>
 <div>
-  <ng-container *ngFor="let item of loggedInUserTradeDetails">
+  <ng-container *ngFor="let item of allTradeDetails">
     <div>
       <app-tradecard
         [tradeDetails]="item"
-        [showUpdateButton]="true"
+        [showUpdateButton]="item.userid === loggedinUserId ? true : false"
         (deleteEvent)="refreshOnDelete()"
       ></app-tradecard>
     </div>
   </ng-container>
-  <ng-container *ngFor="let item of allTradeDetails">
-    <div>
-      <app-tradecard [tradeDetails]="item"></app-tradecard>
-    </div>
-  </ng-container>
+  <div>
+    <app-pagination
+      *ngIf="count !== undefined && count > 0"
+      [count]="count"
+      [numberOfItemsPerPage]="itemsPerPage"
+      (clickEvent)="handlePageChange($event)"
+    ></app-pagination>
+  </div>
 </div>

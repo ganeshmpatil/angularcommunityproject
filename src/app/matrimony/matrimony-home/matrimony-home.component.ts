@@ -9,9 +9,9 @@ import { MatrimonyService } from '../matrimony.service';
   styleUrls: ['./matrimony-home.component.css'],
 })
 export class MatrimonyHomeComponent implements OnInit {
-  loggedinUserMatrimonyDetails: any;
   allUserMatrimonyDetails: any[];
   itemsPerPage: number = 5;
+  loggedinUserId: any;
   numberOfPages: any;
   currentPage: number = 1;
   count: number;
@@ -20,10 +20,18 @@ export class MatrimonyHomeComponent implements OnInit {
     private matrimonyService: MatrimonyService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
+    this.loggedinUserId = this.loginService.loginUserId;
+  }
 
   ngOnInit(): void {
     this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
+    this.getCount();
+    this.getAllMatrimonyDetails(this.currentPage, this.itemsPerPage);
+  }
+
+  getCount() {
     this.matrimonyService.getMatrimonyCount().subscribe(
       (response: any) => {
         this.count = response.count;
@@ -32,35 +40,6 @@ export class MatrimonyHomeComponent implements OnInit {
         ).fill(1);
       },
       (error) => console.log(error)
-    );
-    this.getCurrentUserMatrimonyDetails();
-    this.getAllMatrimonyDetails(this.currentPage, this.itemsPerPage);
-  }
-
-  getCurrentUserMatrimonyDetails() {
-    console.log('Logged in user' + this.loginService.loginUserId);
-    if (this.loginService.loginUserId) {
-      this.matrimonyService
-        .getMatrimonyById(this.loginService.loginUserId)
-        .subscribe((response: any) => {
-          if (response.length > 0) {
-            //console.log('current user matrimony' + JSON.stringify(response));
-            this.loggedinUserMatrimonyDetails = response;
-          }
-        });
-    }
-  }
-
-  loadPage(pageNumber) {
-    if (pageNumber !== 1) {
-      this.loggedinUserMatrimonyDetails = null;
-    } else {
-      this.loggedinUserMatrimonyDetails();
-    }
-    console.log('Fetching next page for ' + pageNumber);
-    this.getAllMatrimonyDetails(
-      this.itemsPerPage * (parseInt(pageNumber) - 1),
-      this.itemsPerPage
     );
   }
 
@@ -82,7 +61,11 @@ export class MatrimonyHomeComponent implements OnInit {
 
   refereshOnDelete() {
     console.log('refereshOnDelete called');
-    this.loggedinUserMatrimonyDetails = null;
+    this.getCount();
     this.getAllMatrimonyDetails(this.currentPage, this.itemsPerPage);
+  }
+  handlePageChange(payload) {
+    console.log('handlePageChange :- ' + payload);
+    this.getAllMatrimonyDetails(payload, this.itemsPerPage);
   }
 }

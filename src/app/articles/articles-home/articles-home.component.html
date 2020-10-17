@@ -2,29 +2,22 @@
 <button (click)="showRegistrationForm()">Register</button>
 
 <div>
-  <ng-container *ngFor="let item of loggedInUserArticleDetails">
+  <ng-container *ngFor="let item of allArticlesDetails">
     <div>
       <app-articlecard
         [articleDetail]="item"
-        [showUpdateButton]="true"
+        [showUpdateButton]="item.userid === loggedinUserId ? true : false"
+        (deleteEvent)="refereshOnDelete()"
       ></app-articlecard>
-    </div>
-  </ng-container>
-  <ng-container *ngFor="let item of allArticlesDetails">
-    <div>
-      <app-articlecard [articleDetail]="item"></app-articlecard>
     </div>
   </ng-container>
 </div>
 
-<nav>
-  <ul class="pagination">
-    <li
-      class="page-item"
-      *ngFor="let page of numberOfPages; let i = index"
-      [ngClass]="page === 2 ? 'active' : ''"
-    >
-      <a (click)="loadPage(i + 1)" class="page-link">{{ i + 1 }}</a>
-    </li>
-  </ul>
-</nav>
+<div>
+  <app-pagination
+    *ngIf="count !== undefined && count > 0"
+    [count]="count"
+    [numberOfItemsPerPage]="itemsPerPage"
+    (clickEvent)="handlePageChange($event)"
+  ></app-pagination>
+</div>

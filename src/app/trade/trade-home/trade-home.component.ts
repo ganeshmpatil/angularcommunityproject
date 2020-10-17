@@ -9,12 +9,12 @@ import { TradeService } from '../trade.service';
   styleUrls: ['./trade-home.component.css'],
 })
 export class TradeHomeComponent implements OnInit {
-  loggedInUserTradeDetails: any;
   allTradeDetails: any;
   itemsPerPage: number = 5;
   numberOfPages: any;
   currentPage: number = 1;
   count: number;
+  loggedinUserId: any;
   constructor(
     private loginService: LoginService,
     private tradeService: TradeService,
@@ -22,6 +22,13 @@ export class TradeHomeComponent implements OnInit {
     private router: Router
   ) {
     this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
+    this.loggedinUserId = this.loginService.loginUserId;
+    this.getAllTradeDetails(this.currentPage, this.itemsPerPage);
+  }
+
+  ngOnInit(): void {}
+
+  getCount() {
     this.tradeService.getTradeCount().subscribe(
       (response: any) => {
         this.count = response.count;
@@ -31,24 +38,6 @@ export class TradeHomeComponent implements OnInit {
       },
       (error) => console.log(error)
     );
-    this.getCurrentUserTradeDetails();
-    this.getAllTradeDetails(this.currentPage, this.itemsPerPage);
-  }
-
-  ngOnInit(): void {}
-
-  getCurrentUserTradeDetails() {
-    console.log('Logged in user' + this.loginService.loginUserId);
-    if (this.loginService.loginUserId) {
-      this.tradeService
-        .getTradeDetailsByUserId(this.loginService.loginUserId)
-        .subscribe((response: any) => {
-          if (response.length > 0) {
-            console.log('current user trade' + JSON.stringify(response));
-            this.loggedInUserTradeDetails = response;
-          }
-        });
-    }
   }
 
   getAllTradeDetails(page: number, itemCountToFetch: number) {
@@ -68,7 +57,12 @@ export class TradeHomeComponent implements OnInit {
   }
 
   refreshOnDelete() {
-    this.getCurrentUserTradeDetails();
+    this.getCount();
     this.getAllTradeDetails(this.currentPage, this.itemsPerPage);
+  }
+
+  handlePageChange(payload) {
+    console.log('handlePageChange :- ' + payload);
+    this.getAllTradeDetails(payload, this.itemsPerPage);
   }
 }

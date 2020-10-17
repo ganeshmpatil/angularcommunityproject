@@ -13,17 +13,24 @@ export class ArticlesHomeComponent implements OnInit {
   itemsPerPage: number = 5;
   numberOfPages: any;
   currentPage: number = 1;
-  loggedInUserArticleDetails: any;
+  loggedinUserId: any;
   count: number;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private service: ArticlesService,
     private loginService: LoginService
-  ) {}
+  ) {
+    this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
+    this.loggedinUserId = this.loginService.loginUserId;
+  }
 
   ngOnInit(): void {
-    this.loginService.loginUserId = 'ganesh.patil.31@gmail.com';
+    this.getCount();
+    this.getAllArticleDetails(this.currentPage, this.itemsPerPage);
+  }
+
+  getCount() {
     this.service.getArticlesCount().subscribe(
       (response: any) => {
         this.count = response.count;
@@ -33,22 +40,6 @@ export class ArticlesHomeComponent implements OnInit {
       },
       (error) => console.log(error)
     );
-    this.getCurrentUserArticleDetails();
-    this.getAllArticleDetails(this.currentPage, this.itemsPerPage);
-  }
-
-  getCurrentUserArticleDetails() {
-    console.log('Logged in user' + this.loginService.loginUserId);
-    if (this.loginService.loginUserId) {
-      this.service
-        .getArticlesByUserId(this.loginService.loginUserId)
-        .subscribe((response: any) => {
-          if (response.length > 0) {
-            console.log('current user articles ' + response);
-            this.loggedInUserArticleDetails = response;
-          }
-        });
-    }
   }
 
   getAllArticleDetails(page: number, itemCountToFetch: number) {
@@ -67,20 +58,16 @@ export class ArticlesHomeComponent implements OnInit {
       );
   }
 
-  loadPage(pageNumber) {
-    if (pageNumber !== 1) {
-      this.loggedInUserArticleDetails = null;
-    } else {
-      this.getCurrentUserArticleDetails();
-    }
-    console.log('Fetching next page for ' + pageNumber);
-    this.getAllArticleDetails(
-      this.itemsPerPage * (parseInt(pageNumber) - 1),
-      this.itemsPerPage
-    );
-  }
-
   showRegistrationForm() {
     this.router.navigate(['registrationform'], { relativeTo: this.route });
+  }
+  handlePageChange(payload) {
+    console.log('handlePageChange :- ' + payload);
+    this.getAllArticleDetails(payload, this.itemsPerPage);
+  }
+  refereshOnDelete() {
+    console.log('refereshOnDelete called');
+    this.getCount();
+    this.getAllArticleDetails(this.currentPage, this.itemsPerPage);
   }
 }

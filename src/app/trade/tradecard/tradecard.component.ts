@@ -59,13 +59,13 @@ export class TradecardComponent implements OnInit {
     this.tradeService.updateTrade(this.tradeDetails).subscribe(
       (response) => {
         this.notificationService.addSuccess(
-          'Matrimony Details deleted succesfully !!'
+          'Trade Details deleted succesfully !!'
         );
         this.deleteEvent.emit(null);
       },
 
       (error) => {
-        this.notificationService.addError('Matrimony Details delete failed !!');
+        this.notificationService.addError('Trade Details delete failed !!');
       }
     );
   }
