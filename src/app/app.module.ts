@@ -21,6 +21,7 @@ import { Observable, Subject } from 'rxjs';
 import { AdvertiseModule } from './advertise/advertise.module';
 import { BannerComponent } from './advertise/banner/banner.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
+import { HistoryComponent } from './history/history.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -32,6 +33,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ContactusComponent,
     CopyrightComponent,
     LoginComponentComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,

@@ -80,6 +80,9 @@
   <div class="container">
     <div class="row justify-content-between">
       <div class="col-sm"><app-banner></app-banner></div>
+      <div *ngIf="homeRouteActive">
+        <app-history></app-history>
+      </div>
       <div class="col-sm"><router-outlet></router-outlet></div>
     </div>
   </div>

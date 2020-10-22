@@ -4,6 +4,7 @@ import { LocalizedComponent } from './localized.component';
 import { LocaleHelper } from './locale.helper';
 import { Resources } from './resources';
 import { EventPublishService } from './event-publish.service';
+import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { EventPublishService } from './event-publish.service';
 })
 export class AppComponent extends LocalizedComponent {
   title = 'communityprojectui';
+  homeRouteActive: boolean = false;
   menuElements = [];
   public languages: Language[] = [
     { name: 'English', localeId: 'en-US' },
@@ -19,14 +21,18 @@ export class AppComponent extends LocalizedComponent {
   ];
   constructor(
     private meta: Meta,
-    private eventPublishService: EventPublishService
+    private eventPublishService: EventPublishService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     super();
+    this.homeRouteActive = true;
     this.resources = Resources;
     this.meta.addTags(
       [{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
       true
     );
+    this.isHomeRouteActive();
   }
 
   public languageSelected($event, language: Language): void {
@@ -36,6 +42,16 @@ export class AppComponent extends LocalizedComponent {
     // Reload page.
     window.location.reload();
   }
+
+  public isHomeRouteActive = () => {
+    this.router.events.subscribe((value) => {
+      if (value instanceof NavigationStart && value.url === '/') {
+        this.homeRouteActive = true;
+      } else if (value instanceof NavigationStart && value.url !== '/') {
+        this.homeRouteActive = false;
+      }
+    });
+  };
 }
 
 interface Language {
