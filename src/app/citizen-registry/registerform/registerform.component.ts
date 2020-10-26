@@ -69,10 +69,6 @@ export class RegisterformComponent implements OnInit {
         this.registerForm.get('village_name').setValue(params['village_name']);
         this.registerForm.get('user_summary').setValue(params['user_summary']);
         this.mode = 'UPDATE';
-        console.log('password is ' + this.dataProvider.data.password);
-        this.registerForm
-          .get('user_password')
-          .setValue(this.dataProvider.data.password);
       }
     });
   }
@@ -88,8 +84,8 @@ export class RegisterformComponent implements OnInit {
 
   registerForm = new FormGroup({
     userid: new FormControl('', [Validators.required]),
-    user_password: new FormControl('', [Validators.required]),
-    user_confirm_password: new FormControl('', [Validators.required]),
+    user_password: new FormControl('', []),
+    user_confirm_password: new FormControl('', []),
     first_name: new FormControl('', [Validators.required]),
     last_name: new FormControl('', [Validators.required]),
     father_full_name: new FormControl('', [Validators.required]),

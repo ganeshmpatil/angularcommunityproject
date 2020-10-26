@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
 import { LoginService } from '../login.service';
-import { NotificationService } from '../shared/notification.service';
 import { LoginService as PostAuthLoginService } from '../shared/login.service';
-
+import { NotificationService } from '../shared/notification.service';
 
 @Component({
-  selector: 'app-login-component',
-  templateUrl: './login-component.component.html',
-  styleUrls: ['./login-component.component.css'],
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.css'],
 })
-export class LoginComponentComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
   loginForm: FormGroup;
-  loading = false;
-  submitted = false;
-  forgotPassword: boolean = false;
   returnUrl: string = '/';
+  submitted = false;
+  loading = false;
+  token: string;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -29,8 +27,11 @@ export class LoginComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
       password: ['', Validators.required],
+      confirmpassword: ['', Validators.required],
+    });
+    this.route.queryParams.subscribe((params) => {
+      this.token = params['token'];
     });
   }
 
@@ -38,38 +39,25 @@ export class LoginComponentComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  onForgotPasswordClick() {
-    this.forgotPassword = true;
-  }
-
-  onCancelClick() {
-    this.forgotPassword = false;
-  }
-
   onSubmit() {
     this.submitted = true;
-    // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
     this.loading = true;
     this.loginService
-      .loginUser(this.f.username.value, this.f.password.value)
+      .resetPassword(this.token, this.f.password.value)
       .subscribe(
         (data) => {
-          if (data.length > 0) {
-            this.loading = false;
-            this.router.navigate([this.returnUrl]);
-            this.loginStatus.loginUserId = this.f.username.value;
-          } else {
-            this.loading = false;
-            this.loginStatus.loginUserId = undefined;
-            this.notificationService.addError('Invalid User Name / Password');
-          }
+          this.loading = false;
+          this.router.navigate([this.returnUrl]);
+          this.loginStatus.loginUserId = this.f.username.value;
         },
         (error) => {
           this.loginStatus.loginUserId = undefined;
-          this.notificationService.addError('Error Occured while logging');
+          this.notificationService.addError(
+            'Error Occured while Passeord Reset '
+          );
           this.loading = false;
         }
       );

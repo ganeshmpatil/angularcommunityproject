@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
   loginPath = 'http://localhost:3000/user/';
+  resetpath = 'http://localhost:3000/resetpassword/';
   constructor(private http: HttpClient) {}
 
   loginUser(username: string, password: string) {
@@ -17,5 +18,9 @@ export class LoginService {
         password
     );
     return this.http.get<any[]>(this.loginPath + username + '/' + password);
+  }
+
+  resetPassword(token: string, password: string) {
+    return this.http.get(this.resetpath + token + '/' + password);
   }
 }
