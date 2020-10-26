@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
   loginPath = 'http://localhost:3000/user/';
-  resetpath = 'http://localhost:3000/resetpassword/';
+  resetpath = 'http://localhost:3000/updatepassword/';
+  sendEmailPath = 'http://localhost:3000/resetpassword/sendemail/';
   constructor(private http: HttpClient) {}
 
   loginUser(username: string, password: string) {
@@ -21,6 +22,11 @@ export class LoginService {
   }
 
   resetPassword(token: string, password: string) {
+    console.log('Reset Url is ' + this.resetpath + token + '/' + password);
     return this.http.get(this.resetpath + token + '/' + password);
+  }
+
+  sendResetEmail(userid: string) {
+    return this.http.get(this.sendEmailPath + userid);
   }
 }

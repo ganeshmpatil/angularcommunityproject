@@ -6,7 +6,6 @@ import { LoginService } from '../login.service';
 import { NotificationService } from '../shared/notification.service';
 import { LoginService as PostAuthLoginService } from '../shared/login.service';
 
-
 @Component({
   selector: 'app-login-component',
   templateUrl: './login-component.component.html',
@@ -47,6 +46,12 @@ export class LoginComponentComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.forgotPassword) {
+      this.loginService.sendResetEmail(this.f.username.value).subscribe(() => {
+        return;
+      });
+      return;
+    }
     this.submitted = true;
     // stop here if form is invalid
     if (this.loginForm.invalid) {

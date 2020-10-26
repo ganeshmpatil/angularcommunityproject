@@ -152,7 +152,12 @@
     >
       {{ resources.Submit }}
     </button>
-    <button class="button is-warning" type="button" (click)="onResetClick()">
+    <button
+      class="button is-warning"
+      type="button"
+      *ngIf="!isUpdateMode()"
+      (click)="onResetClick()"
+    >
       {{ resources.Reset }}
     </button>
     <button class="button is-warning" type="button" (click)="onCancelClick()">
