@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatrimonyService } from '../matrimony.service';
 import { DatePipe } from '@angular/common';
 import { NotificationService } from '../../shared/notification.service';
+import { Socket } from 'ngx-socket-io';
+import {ImageUploadComponent} from '../../shared/image-upload/image-upload.component';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +17,8 @@ import { NotificationService } from '../../shared/notification.service';
 })
 export class RegisterComponent implements OnInit {
   @Input() mode: 'CREATE' | 'UPDATE' = 'CREATE';
+  imageUploadStatus: 'SUCCESS' | 'FAILED' = undefined;
+  moduleName = 'matrimony';
   resources = Resources;
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +26,8 @@ export class RegisterComponent implements OnInit {
     private loginService: LoginService,
     private matrimonyService: MatrimonyService,
     private datePipe: DatePipe,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private socket: Socket
   ) {
     this.route.queryParams.subscribe((params) => {
       console.log('Params ' + JSON.stringify(params));
@@ -31,6 +36,7 @@ export class RegisterComponent implements OnInit {
         this.registerForm.get('userid').setValue(params['userid']);
         this.registerForm.get('occupation').setValue(params['occupation']);
         this.registerForm.get('user_summary').setValue(params['user_summary']);
+        this.registerForm.get('photo').setValue(params['photo']);
         this.registerForm
           .get('birth_date')
           .setValue(
@@ -53,12 +59,17 @@ export class RegisterComponent implements OnInit {
     photo: new FormControl('', []),
     birth_date: new FormControl('', []),
     gotra: new FormControl(''),
+    matrimony_image_input: new FormControl('', []),
   });
 
   onSubmit() {
     this.registerForm.value['status'] = 'A';
-
+    console.log('Image upload status ' + this.imageUploadStatus);
     if (!this.isUpdateMode()) {
+      if (this.imageUploadStatus === undefined || this.imageUploadStatus === 'FAILED')
+      {
+        this.notificationService.addError('Please upload image before submitting the form');
+      } else {
       this.matrimonyService.createMatrimony(this.registerForm.value).subscribe(
         (response) => {
           this.notificationService.addSuccess(
@@ -71,7 +82,8 @@ export class RegisterComponent implements OnInit {
           this.notificationService.addError('Matrimony Details save Failed !!');
         }
       );
-    } else {
+    }
+  } else {
       this.matrimonyService.updateMatrimony(this.registerForm.value).subscribe(
         (response) => {
           this.router.navigate(['matrimony/home']);
@@ -100,5 +112,16 @@ export class RegisterComponent implements OnInit {
 
   onCancelClick() {
     this.router.navigate(['matrimony/home']);
+  }
+
+  handleImageUploadResponse(data)
+  {
+    if (data.fileName){
+      this.registerForm.get('photo').setValue(data.fileName);
+      this.imageUploadStatus = 'SUCCESS';
+    }
+    else{
+      this.imageUploadStatus = 'FAILED';
+    }
   }
 }

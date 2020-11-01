@@ -1,55 +1,27 @@
-<label class="label">Photo/फोटो</label>
-<div class="file-field md-form form-control">
-  <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
-    <input
-      type="file"
-      mdbFileSelect
-      (change)="onUpload($event)"
-      [formControl]="registerForm.get('user_image_input')"
-      placeholder="Upload Image"
-    />
-    <button (click)="onImageUpload($event)">Upload Image</button>
-    <img [src]="imageUrl" />
-  </div>
-</div>
+<app-image-upload [module]="moduleName" (imageUploadResponseEvent)="handleImageUploadResponse($event)">
+</app-image-upload>
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <app-input
-      label="{{ resources.LoginId }}"
-      [control]="registerForm.get('userid')"
-    ></app-input>
-    <div class="field" *ngIf="!isUpdateMode()">
-      <label class="label">{{ resources.Password }}</label>
-      <div class="control">
-        <input
-          type="password"
-          class="form-control"
-          [formControl]="registerForm.get('user_password')"
-        />
-      </div>
-    </div>
-    <div class="field" *ngIf="!isUpdateMode()">
-      <label class="label">{{ resources.ConfirmPassword }}</label>
-      <div class="control">
-        <input
-          type="password"
-          class="form-control"
-          [formControl]="registerForm.get('user_confirm_password')"
-        />
-      </div>
-    </div>
+    <div class="form-group">
 
-    <app-input
-      label="{{ resources.FirstName }}"
-      [control]="registerForm.get('first_name')"
-    ></app-input>
+        <app-input label="{{ resources.LoginId }}" [control]="registerForm.get('userid')"></app-input>
+        <div class="field" *ngIf="!isUpdateMode()">
+            <label class="label">{{ resources.Password }}</label>
+            <div class="control">
+                <input type="password" class="form-control" [formControl]="registerForm.get('user_password')" />
+            </div>
+        </div>
+        <div class="field" *ngIf="!isUpdateMode()">
+            <label class="label">{{ resources.ConfirmPassword }}</label>
+            <div class="control">
+                <input type="password" class="form-control" [formControl]="registerForm.get('user_confirm_password')" />
+            </div>
+        </div>
 
-    <app-input
-      label="{{ resources.LastName }}"
-      [control]="registerForm.get('last_name')"
-    ></app-input>
+        <app-input label="{{ resources.FirstName }}" [control]="registerForm.get('first_name')"></app-input>
 
-    <!--   <label class="label">Photo/फोटो</label>
+        <app-input label="{{ resources.LastName }}" [control]="registerForm.get('last_name')"></app-input>
+
+        <!--   <label class="label">Photo/फोटो</label>
     <div class="file-field md-form form-control">
       <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
         <input
@@ -63,106 +35,54 @@
       </div>
     </div> -->
 
-    <app-input
-      label="{{ resources.FatherName }}"
-      [control]="registerForm.get('father_full_name')"
-    ></app-input>
+        <app-input label="{{ resources.FatherName }}" [control]="registerForm.get('father_full_name')"></app-input>
 
-    <div class="form-group" *ngIf="!isUpdateMode()">
-      <label for="gender">{{ resources.Gender }}</label>
-      <select
-        (change)="onGenderSelect($event)"
-        [formControl]="registerForm.get('gender')"
-        class="form-control"
-      >
+        <div class="form-group" *ngIf="!isUpdateMode()">
+            <label for="gender">{{ resources.Gender }}</label>
+            <select (change)="onGenderSelect($event)" [formControl]="registerForm.get('gender')" class="form-control">
         <option>Choose Gender</option>
         <option *ngFor="let gender of genderList">{{ gender }}</option>
       </select>
-    </div>
+        </div>
 
-    <app-input
-      label="{{ resources.MobileNumber }}"
-      [control]="registerForm.get('mobile_number')"
-    ></app-input>
+        <app-input label="{{ resources.MobileNumber }}" [control]="registerForm.get('mobile_number')"></app-input>
 
-    <app-input
-      label="{{ resources.Email }}"
-      [control]="registerForm.get('email_id')"
-    ></app-input>
+        <app-input label="{{ resources.Email }}" [control]="registerForm.get('email_id')"></app-input>
 
-    <app-input
-      label="{{ resources.VillageName }}"
-      [control]="registerForm.get('village_name')"
-    ></app-input>
+        <app-input label="{{ resources.VillageName }}" [control]="registerForm.get('village_name')"></app-input>
 
-    <app-input
-      label="{{ resources.AddressLine1 }}"
-      [control]="registerForm.get('address_line_1')"
-    ></app-input>
+        <app-input label="{{ resources.AddressLine1 }}" [control]="registerForm.get('address_line_1')"></app-input>
 
-    <app-input
-      label="{{ resources.AddressLine2 }}"
-      [control]="registerForm.get('address_line_2')"
-    ></app-input>
+        <app-input label="{{ resources.AddressLine2 }}" [control]="registerForm.get('address_line_2')"></app-input>
 
-    <app-input
-      label="{{ resources.AddressLine3 }}"
-      [control]="registerForm.get('address_line_3')"
-    ></app-input>
+        <app-input label="{{ resources.AddressLine3 }}" [control]="registerForm.get('address_line_3')"></app-input>
 
-    <app-input
-      label="{{ resources.Suburb }}"
-      [control]="registerForm.get('suburb_taluka')"
-    ></app-input>
+        <app-input label="{{ resources.Suburb }}" [control]="registerForm.get('suburb_taluka')"></app-input>
 
-    <app-input
-      label="{{ resources.City }}"
-      [control]="registerForm.get('city')"
-    ></app-input>
+        <app-input label="{{ resources.City }}" [control]="registerForm.get('city')"></app-input>
 
-    <app-input
-      label="{{ resources.State }}"
-      [control]="registerForm.get('state_name')"
-    ></app-input>
+        <app-input label="{{ resources.State }}" [control]="registerForm.get('state_name')"></app-input>
 
-    <app-input
-      label="{{ resources.Pin }}"
-      [control]="registerForm.get('pin_code')"
-    ></app-input>
+        <app-input label="{{ resources.Pin }}" [control]="registerForm.get('pin_code')"></app-input>
 
-    <app-input
-      label="{{ resources.EducationDegree }}"
-      [control]="registerForm.get('education_degree')"
-    ></app-input>
+        <app-input label="{{ resources.EducationDegree }}" [control]="registerForm.get('education_degree')"></app-input>
 
-    <div class="field">
-      <label class="label">{{ resources.Summary }}</label>
-      <div class="control">
-        <textarea
-          class="form-control"
-          [formControl]="registerForm.get('user_summary')"
-        ></textarea>
-      </div>
-    </div>
+        <div class="field">
+            <label class="label">{{ resources.Summary }}</label>
+            <div class="control">
+                <textarea class="form-control" [formControl]="registerForm.get('user_summary')"></textarea>
+            </div>
+        </div>
 
-    <button
-      class="button is-primary"
-      [disabled]="registerForm.invalid"
-      type="submit"
-    >
+        <button class="button is-primary" [disabled]="registerForm.invalid" type="submit">
       {{ resources.Submit }}
     </button>
-    <button
-      class="button is-warning"
-      type="button"
-      *ngIf="!isUpdateMode()"
-      (click)="onResetClick()"
-    >
+        <button class="button is-warning" type="button" *ngIf="!isUpdateMode()" (click)="onResetClick()">
       {{ resources.Reset }}
     </button>
-    <button class="button is-warning" type="button" (click)="onCancelClick()">
+        <button class="button is-warning" type="button" (click)="onCancelClick()">
       {{ resources.Cancel }}
     </button>
-  </div>
+    </div>
 </form>
 <hr />

@@ -4,6 +4,9 @@ import { LoginService } from '../../shared/login.service';
 import { Resources } from '../../resources';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TradeService } from '../trade.service';
+import { Socket } from 'ngx-socket-io';
+import { NotificationService } from '../../shared/notification.service';
+
 
 @Component({
   selector: 'app-register',
@@ -13,12 +16,18 @@ import { TradeService } from '../trade.service';
 export class RegisterComponent implements OnInit {
   @Input() mode: 'CREATE' | 'UPDATE' = 'CREATE';
   resources = Resources;
+  imageUploadStatus: 'SUCCESS' | 'FAILED' = undefined;
   recordnumber: any = 1;
+  controlName: any;
+  moduleName = 'trade';
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private loginService: LoginService,
-    private tradeService: TradeService
+    private tradeService: TradeService,
+    private socket: Socket,
+    private notificationService: NotificationService,
+
   ) {
     this.route.queryParams.subscribe((params) => {
       console.log('Params ' + JSON.stringify(params));
@@ -73,6 +82,10 @@ export class RegisterComponent implements OnInit {
     this.registerForm.value['status'] = 'A';
 
     if (!this.isUpdateMode()) {
+      if (this.imageUploadStatus === undefined || this.imageUploadStatus === 'FAILED'){
+        this.notificationService.addError('please upload images before submit.');
+        return;
+      }
       this.tradeService.createTrade(this.registerForm.value).subscribe(
         (response) => {
           this.router.navigate(['trade/home']);
@@ -93,5 +106,17 @@ export class RegisterComponent implements OnInit {
 
   onCancelClick() {
     this.router.navigate(['trade/home']);
+  }
+
+  handleImageUploadResponse(data)
+  {
+    if (data.fileName){
+      this.controlName = 'item_photo_' + data.counter;
+      this.registerForm.get(this.controlName).setValue(data.fileName);
+      this.imageUploadStatus = 'SUCCESS';
+    }
+    else{
+      this.imageUploadStatus = 'FAILED';
+    }
   }
 }

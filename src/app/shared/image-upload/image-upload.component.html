@@ -1,0 +1,7 @@
+<label class="label">Photo/फोटो</label>
+<div class="file-field md-form form-control">
+    <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
+        <input type="file" mdbFileSelect (change)="onUpload($event)" placeholder="Upload Image" />
+        <button (click)="onImageUpload($event)">Upload Image</button>
+    </div>
+</div>

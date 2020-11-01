@@ -6,6 +6,7 @@ import { AdvertiseRoutingModule } from './advertise-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { BannerComponent } from './banner/banner.component';
 import { HomeComponent } from './home/home.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [RegisterComponent, BannerComponent, HomeComponent],
@@ -15,6 +16,7 @@ import { HomeComponent } from './home/home.component';
     AdvertiseRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule
   ],
   exports: [BannerComponent],
 })

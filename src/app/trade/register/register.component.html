@@ -1,47 +1,37 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <app-input
-      label="Item Name"
-      [control]="registerForm.get('item_name')"
-    ></app-input>
+<app-image-upload [module]="moduleName" [counter]=1 (imageUploadResponseEvent)="handleImageUploadResponse($event)">
+</app-image-upload>
+<app-image-upload [module]="moduleName" [counter]=2 (imageUploadResponseEvent)="handleImageUploadResponse($event)">
+</app-image-upload>
+<app-image-upload [module]="moduleName" [counter]=3 (imageUploadResponseEvent)="handleImageUploadResponse($event)">
+</app-image-upload>
+<app-image-upload [module]="moduleName" [counter]=4 (imageUploadResponseEvent)="handleImageUploadResponse($event)">
+</app-image-upload>
+<app-image-upload [module]="moduleName" [counter]=5 (imageUploadResponseEvent)="handleImageUploadResponse($event)">
+</app-image-upload>
+<div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <app-input label="Item Name" [control]="registerForm.get('item_name')"></app-input>
 
-    <div class="field">
-      <label class="label">Item Description</label>
-      <div class="control">
-        <textarea
-          class="form-control"
-          [formControl]="registerForm.get('item_desc')"
-        ></textarea>
-      </div>
-    </div>
-    <app-input
-      label="Contact Number"
-      [control]="registerForm.get('contact_number')"
-    ></app-input>
-    <app-input
-      label="Email"
-      [control]="registerForm.get('contact_email')"
-    ></app-input>
-    <app-input
-      label="Sell Amount"
-      [control]="registerForm.get('amount')"
-    ></app-input>
-    <button
-      mdbBtn
-      color="primary"
-      mdbWavesEffect
-      class="button is-primary"
-      [disabled]="registerForm.invalid"
-      type="submit"
-    >
+            <div class="field">
+                <label class="label">Item Description</label>
+                <div class="control">
+                    <textarea class="form-control" [formControl]="registerForm.get('item_desc')"></textarea>
+                </div>
+            </div>
+            <app-input label="Contact Number" [control]="registerForm.get('contact_number')"></app-input>
+            <app-input label="Email" [control]="registerForm.get('contact_email')"></app-input>
+            <app-input label="Sell Amount" [control]="registerForm.get('amount')"></app-input>
+            <button mdbBtn color="primary" mdbWavesEffect class="button is-primary" [disabled]="registerForm.invalid" type="submit">
       {{ resources.Submit }}
     </button>
 
-    <button class="button is-warning" type="button" (click)="onResetClick()">
+            <button class="button is-warning" type="button" (click)="onResetClick()">
       {{ resources.Reset }}
     </button>
-    <button class="button is-warning" type="button" (click)="onCancelClick()">
+            <button class="button is-warning" type="button" (click)="onCancelClick()">
       {{ resources.Cancel }}
     </button>
-  </div>
-</form>
+        </div>
+    </form>
+</div>

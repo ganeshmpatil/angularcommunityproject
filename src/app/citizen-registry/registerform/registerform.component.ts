@@ -17,7 +17,9 @@ import { NotificationService } from '../../shared/notification.service';
 })
 export class RegisterformComponent implements OnInit {
   @Input() mode: 'CREATE' | 'UPDATE' = 'CREATE';
+  imageUploadStatus: 'SUCCESS' | 'FAILED' = undefined;
   resources = Resources;
+  moduleName = 'Citizen';
   constructor(
     private userService: CitizenregistrationService,
     private imageService: ImageuploadserviceService,
@@ -46,6 +48,7 @@ export class RegisterformComponent implements OnInit {
         this.registerForm
           .get('education_degree')
           .setValue(params['education_degree']);
+        this.registerForm.get('user_image').setValue(params['user_image']);
 
         this.registerForm.get('email_id').setValue(params['email_id']);
 
@@ -74,13 +77,7 @@ export class RegisterformComponent implements OnInit {
   }
 
   /*End of Constructor */
-
-  wsurl: string = 'ws://localhost:3000/';
-  imageSrc: string | ArrayBuffer;
   genderList: any = ['Male', 'Female'];
-  imageObj: File;
-  imageUrl: string;
-  imageFileName: string;
 
   registerForm = new FormGroup({
     userid: new FormControl('', [Validators.required]),
@@ -112,6 +109,11 @@ export class RegisterformComponent implements OnInit {
     this.registerForm.value['status'] = 'A';
     console.log(this.registerForm.value);
     if (!this.isUpdateMode) {
+      if (this.imageUploadStatus === undefined || this.imageUploadStatus === 'FAILED')
+      {
+        this.notificationService.addError('Please upload your photo before Save !!');
+        return;
+      }
       this.userService.saveUser(this.registerForm.value).subscribe(
         (response) => {
           this.notificationService.addSuccess(
@@ -158,25 +160,14 @@ export class RegisterformComponent implements OnInit {
     return false;
   }
 
-  onUpload(event) {
-    const file = event.target.files[0];
-    this.imageFileName = file.name;
-    console.log('File is ' + file);
-    this.imageObj = file;
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = (event) => {
-      this.imageSrc = reader.result;
-    };
-    console.log(this.imageObj);
-  }
-  onImageUpload(event: Event) {
-    console.log('In onImageUpload start..');
-
-    this.socket.emit('addimage', {
-      name: this.imageFileName,
-      src: this.imageSrc,
-    });
-    console.log('In onImageUpload End..');
+  handleImageUploadResponse(data)
+  {
+    if (data.fileName){
+      this.registerForm.get('user_image').setValue(data.fileName);
+      this.imageUploadStatus = 'SUCCESS';
+    }
+    else{
+      this.imageUploadStatus = 'FAILED';
+    }
   }
 }

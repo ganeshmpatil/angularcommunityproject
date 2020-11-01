@@ -1,35 +1,24 @@
+<app-image-upload [module]="moduleName" (imageUploadResponseEvent)="handleImageUploadResponse($event)">
+</app-image-upload>
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <app-input
-      label="{{ resources.ArticleHeadline }}"
-      [control]="registerForm.get('headline')"
-    ></app-input>
+    <div class="form-group">
+        <app-input label="{{ resources.ArticleHeadline }}" [control]="registerForm.get('headline')"></app-input>
 
-    <div class="field">
-      <label class="label">{{ resources.ArticleSummary }}</label>
-      <div class="control">
-        <textarea
-          class="form-control"
-          [formControl]="registerForm.get('description')"
-        ></textarea>
-      </div>
-    </div>
-    <button
-      mdbBtn
-      color="primary"
-      mdbWavesEffect
-      class="button is-primary"
-      [disabled]="registerForm.invalid"
-      type="submit"
-    >
+        <div class="field">
+            <label class="label">{{ resources.ArticleSummary }}</label>
+            <div class="control">
+                <textarea class="form-control" [formControl]="registerForm.get('description')"></textarea>
+            </div>
+        </div>
+        <button mdbBtn color="primary" mdbWavesEffect class="button is-primary" [disabled]="registerForm.invalid" type="submit">
       {{ resources.Submit }}
     </button>
 
-    <button class="button is-warning" type="button" (click)="onResetClick()">
+        <button class="button is-warning" type="button" (click)="onResetClick()">
       {{ resources.Reset }}
     </button>
-    <button class="button is-warning" type="button" (click)="onCancelClick()">
+        <button class="button is-warning" type="button" (click)="onCancelClick()">
       {{ resources.Cancel }}
     </button>
-  </div>
+    </div>
 </form>
