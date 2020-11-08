@@ -10,11 +10,18 @@ import { MatrimonyService } from '../matrimony.service';
 })
 export class MatrimonyHomeComponent implements OnInit {
   allUserMatrimonyDetails: any[];
-  itemsPerPage: number = 5;
+  itemsPerPage = 5;
   loggedinUserId: any;
   numberOfPages: any;
-  currentPage: number = 1;
+  currentPage = 1;
   count: number;
+  isSearchMode = false;
+  searchOptions = {
+    first_name: 'First Name',
+    last_name: 'Last Name',
+    gotra: 'Gotra',
+    occupation: 'Occupation'
+  };
   constructor(
     private loginService: LoginService,
     private matrimonyService: MatrimonyService,
@@ -46,7 +53,7 @@ export class MatrimonyHomeComponent implements OnInit {
       .getMatrimonyByPage(this.loginService.loginUserId, page, itemCountToFetch)
       .subscribe(
         (response: any) => {
-          //console.log('all user articles ' + JSON.stringify(response));
+          // console.log('all user articles ' + JSON.stringify(response));
           this.allUserMatrimonyDetails = response;
         },
         (error) => console.log(error)
@@ -77,4 +84,15 @@ export class MatrimonyHomeComponent implements OnInit {
       return false;
     }
   }
+
+  handleSearchResult(payload){
+    this.isSearchMode = true;
+    this.allUserMatrimonyDetails = payload;
+  }
+
+  handleSearchCancel(){
+    this.isSearchMode = false;
+    this.getAllMatrimonyDetails(this.currentPage, this.itemsPerPage);
+  }
+
 }

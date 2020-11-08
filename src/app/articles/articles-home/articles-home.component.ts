@@ -15,6 +15,12 @@ export class ArticlesHomeComponent implements OnInit {
   currentPage = 1;
   loggedinUserId: any;
   count: number;
+  isSearchMode = false;
+  searchOptions = {
+    headline: 'Headline',
+    first_name: 'First Name',
+    last_name: 'Last Name'
+  };
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -79,5 +85,15 @@ export class ArticlesHomeComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  handleSearchResult(payload){
+    this.isSearchMode = true;
+    this.allArticlesDetails = payload;
+  }
+
+  handleSearchCancel(){
+    this.isSearchMode = false;
+    this.getAllArticleDetails(this.currentPage, this.itemsPerPage);
   }
 }

@@ -3,6 +3,23 @@
   Register
 </button>
 
+<br/>
+<div>
+  Search Articles 
+</div>
+<br/>
+<div>
+  <app-search 
+  [dropDownItems]="searchOptions"
+   searchEntity="article"
+   (searchResult)="handleSearchResult($event)"
+   (cancel)="handleSearchCancel()"
+   >
+  </app-search>
+</div>
+<br/>
+
+
 <div>
   <ng-container *ngFor="let item of allArticlesDetails">
     <div>
@@ -17,7 +34,7 @@
 
 <div>
   <app-pagination
-    *ngIf="count !== undefined && count > 0"
+    *ngIf="count !== undefined && count > 0 && !isSearchMode"
     [count]="count"
     [numberOfItemsPerPage]="itemsPerPage"
     (clickEvent)="handlePageChange($event)"

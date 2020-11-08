@@ -10,11 +10,18 @@ import { TradeService } from '../trade.service';
 })
 export class TradeHomeComponent implements OnInit {
   allTradeDetails: any;
-  itemsPerPage: number = 5;
+  itemsPerPage = 5;
   numberOfPages: any;
-  currentPage: number = 1;
+  currentPage = 1;
   count: number;
   loggedinUserId: any;
+  isSearchMode = false;
+  searchOptions = {
+    first_name: 'First Name',
+    last_name: 'Last Name',
+    item_name: 'Item Name',
+    item_desc: 'Item Summary'
+  };
   constructor(
     private loginService: LoginService,
     private tradeService: TradeService,
@@ -44,7 +51,7 @@ export class TradeHomeComponent implements OnInit {
       .getTradeyByPage(this.loginService.loginUserId, page, itemCountToFetch)
       .subscribe(
         (response: any) => {
-          //console.log('all user articles ' + JSON.stringify(response));
+          // console.log('all user articles ' + JSON.stringify(response));
           this.allTradeDetails = response;
         },
         (error) => console.log(error)
@@ -74,4 +81,15 @@ export class TradeHomeComponent implements OnInit {
       return false;
     }
   }
+
+  handleSearchResult(payload){
+    this.isSearchMode = true;
+    this.allTradeDetails = payload;
+  }
+
+  handleSearchCancel(){
+    this.isSearchMode = false;
+    this.getAllTradeDetails(this.currentPage, this.itemsPerPage);
+  }
+
 }
