@@ -15,10 +15,10 @@ export class PaginationComponent implements OnInit {
   navigationEndPage: any;
   currentPageNumber: any;
   currentPaginationRangeCounter: any;
-  showAdditionalNavigationOptions: boolean = false;
-  showNextButton: boolean = true;
-  showPrevButton: boolean = true;
-  isLastPageReached: boolean = false;
+  showAdditionalNavigationOptions = false;
+  showNextButton  = true;
+  showPrevButton  = true;
+  isLastPageReached = false;
 
   constructor() {}
 

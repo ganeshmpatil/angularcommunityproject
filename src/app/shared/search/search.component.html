@@ -1,0 +1,31 @@
+<form [formGroup]="searchForm" (ngSubmit)="doSearch()">
+  <div class="form-group">
+    <select [formControl]="searchForm.get('searchTerm')" class="form-control">
+      <option disabled>Select Search Field</option>    
+      <option>Choose Field</option> 
+      <option *ngFor="let item of dropDownItems | keyvalue" [value]=item.key>{{ item.value }}</option>
+    </select>
+
+    <app-input    
+    label= "Enter search value "  
+      [control]="searchForm.get('searchValue')"
+    ></app-input>
+    <br/>
+
+    <button
+      mdbBtn
+      color="primary"
+      mdbWavesEffect
+      class="button is-primary"
+      type="submit"
+    >
+      Search
+    </button>
+
+    <button class="button is-warning" type="button" (click)="onCancelClick()">
+        Cancel
+      </button>
+
+    <!-- Form Control values:- {{searchForm.value.searchValue}} <> {{searchForm.value.searchTerm}} -->
+  </div>
+</form>

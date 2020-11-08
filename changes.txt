@@ -1,0 +1,9 @@
+1 ) Image processing done 
+2 ) Search user functionality 10:22 -- 12:40 
+3 ) Resouce Bundle changes.
+4 ) advertise page functionality
+5 ) rename login to logout post login
+	also provide signup button.
+6 ) Remove register button on matrimony and blood if posted.	
+7 ) after signin image not showing on community page.
+8 ) Implement validation.

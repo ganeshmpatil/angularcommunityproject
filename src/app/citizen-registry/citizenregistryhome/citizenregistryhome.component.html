@@ -1,6 +1,21 @@
 <!-- <app-registerform></app-registerform> -->
 <button (click)="showRegistrationForm()">Register</button>
+<br/>
+<div>
+  Search User 
+</div>
+<br/>
+<div>
+  <app-search 
+  [dropDownItems]="searchOptions"
+   searchEntity="user"
+   (searchResult)="handleSearchResult($event)"
+   (cancel)="handleSearchCancel()"
+   >
 
+  </app-search>
+</div>
+<br/>
 <div>
   <ng-container *ngFor="let item of allUserDetails">
     <div>
@@ -14,7 +29,7 @@
 
 <div>
   <app-pagination
-    *ngIf="count !== undefined && count > 0"
+    *ngIf="count !== undefined && count > 0 && !isSearchMode"
     [count]="count"
     [numberOfItemsPerPage]="itemsPerPage"
     (clickEvent)="handlePageChange($event)"

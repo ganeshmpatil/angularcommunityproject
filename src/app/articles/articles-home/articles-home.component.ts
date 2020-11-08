@@ -10,9 +10,9 @@ import { LoginService } from '../../shared/login.service';
 })
 export class ArticlesHomeComponent implements OnInit {
   allArticlesDetails: any[];
-  itemsPerPage: number = 5;
+  itemsPerPage = 5;
   numberOfPages: any;
-  currentPage: number = 1;
+  currentPage = 1;
   loggedinUserId: any;
   count: number;
   constructor(

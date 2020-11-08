@@ -11,12 +11,22 @@ import { PaginationComponent } from '../../shared/pagination/pagination.componen
 })
 export class CitizenregistryhomeComponent implements OnInit {
   allUserDetails: any[];
-  itemsPerPage: number = 5;
+  itemsPerPage = 5;
   loggedInUSerDetails: any;
   loggedinUserId: any;
   count: number;
   numberOfPages: any;
-  currentPage: number = 1;
+  currentPage = 1;
+  isSearchMode = false;
+  searchOptions = {
+    first_name: 'First Name',
+    last_name: 'Last Name',
+    father_full_name: 'Father Name',
+    mobile_number: 'Mobile Number',
+    village_name: 'Village Name',
+    city: 'City',
+    education_degree: 'Education'
+  };
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -40,17 +50,6 @@ export class CitizenregistryhomeComponent implements OnInit {
     this.getAllUserDetails(this.currentPage, this.itemsPerPage);
   }
 
-  getCurrentUserDetails() {
-    if (this.loginService.loginUserId) {
-      this.service
-        .getUser(this.loginService.loginUserId)
-        .subscribe((response: any) => {
-          if (response.length > 0) {
-            this.loggedInUSerDetails = response[0];
-          }
-        });
-    }
-  }
 
   getAllUserDetails(page: number, itemCountToFetch: number) {
     this.service
@@ -67,21 +66,19 @@ export class CitizenregistryhomeComponent implements OnInit {
     this.router.navigate(['registrationform'], { relativeTo: this.route });
   }
 
-  loadPage(pageNumber) {
-    if (pageNumber !== 1) {
-      this.loggedInUSerDetails = null;
-    } else {
-      this.getCurrentUserDetails();
-    }
-    console.log('Fetching next page for ' + pageNumber);
-    this.getAllUserDetails(
-      this.itemsPerPage * (parseInt(pageNumber) - 1),
-      this.itemsPerPage
-    );
-  }
 
   handlePageChange(payload) {
     console.log('handlePageChange :- ' + payload);
     this.getAllUserDetails(payload, this.itemsPerPage);
+  }
+
+  handleSearchResult(payload){
+    this.isSearchMode = true;
+    this.allUserDetails = payload;
+  }
+
+  handleSearchCancel(){
+    this.isSearchMode = false;
+    this.getAllUserDetails(this.currentPage, this.itemsPerPage);
   }
 }
