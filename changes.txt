@@ -1,9 +1,19 @@
-1 ) Image processing done 
-2 ) Search user functionality 10:22 -- 12:40 
-3 ) Resouce Bundle changes.
+1 ) Image processing done -- Done
+2 ) Search user functionality 10:22 -- 12:40 Done 
+3 ) Resouce Bundle changes.-- Pending...15:54 -- 18:00
 4 ) advertise page functionality
-5 ) rename login to logout post login
-	also provide signup button.
-6 ) Remove register button on matrimony and blood if posted.	
+5 ) rename login to logout post login -- Tommorrow
+	also provide signup button. -- Tomorrow
+6 ) Remove register button on matrimony and blood if posted.	 -- Day after Tomorrow 
 7 ) after signin image not showing on community page.
-8 ) Implement validation.
+8 ) Implement validation. -- Day after Tomorrow Today 
+9 ) Trades page not showing pagination. -- Tomorrow
+10 ) Mail not going. -- Monday
+12) secret store. --Monday
+
+
+search drop down based on various values
+
+make domain part first
+
+Search drodown...clear button ....
