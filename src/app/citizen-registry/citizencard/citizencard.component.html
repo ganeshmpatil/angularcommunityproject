@@ -9,10 +9,10 @@
       {{ userDetails.first_name }} {{ userDetails.last_name }}
     </h5>
     <p class="card-text"></p>
-    <div>Father Name : {{ userDetails.father_full_name }}</div>
-    <div>Village Name : {{ userDetails.village_name }}</div>
+    <div>{{resources.FatherName}} : {{ userDetails.father_full_name }}</div>
+    <div>{{resources.VillageName}} : {{ userDetails.village_name }}</div>
     <div>
-      Address :
+      {{resources.Address}}  :
       {{
         userDetails.address_line_1 +
           "," +
@@ -27,9 +27,9 @@
           userDetails.state_name
       }}
     </div>
-    <div>Mobile Number : {{ userDetails.mobile_number }}</div>
-    <div>Email Id : {{ userDetails.email_id }}</div>
-    <div>Education : {{ userDetails.education_degree }}</div>
+    <div>{{resources.MobileNumber}} : {{ userDetails.mobile_number }}</div>
+    <div>{{resources.Email}} : {{ userDetails.email_id }}</div>
+    <div>{{resources.EducationDegree}} : {{ userDetails.education_degree }}</div>
     <button *ngIf="showUpdateButton" (click)="showUpdateForm()">Update</button>
   </div>
 </div>

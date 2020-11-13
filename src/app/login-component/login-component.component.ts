@@ -5,6 +5,8 @@ import { first } from 'rxjs/operators';
 import { LoginService } from '../login.service';
 import { NotificationService } from '../shared/notification.service';
 import { LoginService as PostAuthLoginService } from '../shared/login.service';
+import { Observable } from 'rxjs';
+import { Resources } from './../resources';
 
 @Component({
   selector: 'app-login-component',
@@ -15,8 +17,13 @@ export class LoginComponentComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  forgotPassword: boolean = false;
-  returnUrl: string = '/';
+  forgotPassword = false;
+  returnUrl = '/';
+  resources = Resources;
+
+  logout(){
+    this.loginStatus.loginUserId = null;
+  }
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,

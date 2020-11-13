@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../shared/login.service';
 import { TradeService } from '../trade.service';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-trade-home',
@@ -16,11 +17,12 @@ export class TradeHomeComponent implements OnInit {
   count: number;
   loggedinUserId: any;
   isSearchMode = false;
+  resources = Resources;
   searchOptions = {
-    first_name: 'First Name',
-    last_name: 'Last Name',
-    item_name: 'Item Name',
-    item_desc: 'Item Summary'
+    first_name: this.resources.FirstName,
+    last_name: this.resources.LastName,
+    item_name: this.resources.ItemName,
+    item_desc: this.resources.ItemDescription
   };
   constructor(
     private loginService: LoginService,

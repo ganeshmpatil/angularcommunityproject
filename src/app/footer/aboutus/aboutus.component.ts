@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-aboutus',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./aboutus.component.css']
 })
 export class AboutusComponent implements OnInit {
+
+  resources: Resources;
 
   constructor() { }
 

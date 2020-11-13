@@ -5,6 +5,7 @@ import { LocaleHelper } from './locale.helper';
 import { Resources } from './resources';
 import { EventPublishService } from './event-publish.service';
 import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
+import { LoginService } from './shared/login.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,9 @@ import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 })
 export class AppComponent extends LocalizedComponent {
   title = 'communityprojectui';
-  homeRouteActive: boolean = false;
+  homeRouteActive = false;
   menuElements = [];
+  isUserLoggedIn = false;
   public languages: Language[] = [
     { name: 'English', localeId: 'en-US' },
     { name: 'मराठी', localeId: 'mr' },
@@ -23,7 +25,8 @@ export class AppComponent extends LocalizedComponent {
     private meta: Meta,
     private eventPublishService: EventPublishService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService
   ) {
     super();
     this.homeRouteActive = true;
@@ -51,7 +54,14 @@ export class AppComponent extends LocalizedComponent {
         this.homeRouteActive = false;
       }
     });
-  };
+  }
+
+  logout() {
+    if (this.loginService.loginUserId) {
+      this.loginService.loginUserId = null;
+      this.isUserLoggedIn = false;
+    }
+  }
 }
 
 interface Language {

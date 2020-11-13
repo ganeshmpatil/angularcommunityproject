@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-pagination',
@@ -19,6 +20,7 @@ export class PaginationComponent implements OnInit {
   showNextButton  = true;
   showPrevButton  = true;
   isLastPageReached = false;
+  resources = Resources;
 
   constructor() {}
 
@@ -76,7 +78,7 @@ export class PaginationComponent implements OnInit {
       this.navigationEndPage = this.numberOfPages;
       this.isLastPageReached = true;
     }
-    //this.navigationStartPage = this.navigationEndPage - 4;
+    // this.navigationStartPage = this.navigationEndPage - 4;
     this.currentPageNumber = this.navigationStartPage;
     console.log('onNextSetClick ' + this.currentPageNumber);
     this.clickEvent.emit(this.currentPageNumber);

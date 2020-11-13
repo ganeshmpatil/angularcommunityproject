@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Resources } from './../resources';
 
 @Component({
   selector: 'app-history',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
 
+  resources = Resources;
   constructor() { }
 
   ngOnInit(): void {

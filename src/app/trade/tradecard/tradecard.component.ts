@@ -3,6 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { TradeService } from '../trade.service';
 import { NotificationService } from '../../shared/notification.service';
 import { NotificationListComponent } from 'src/app/shared/notification-list/notification-list.component';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-tradecard',
@@ -13,6 +14,7 @@ export class TradecardComponent implements OnInit {
   @Input() tradeDetails: any;
   @Input() showUpdateButton: boolean;
   @Output() deleteEvent: EventEmitter<any> = new EventEmitter();
+  resources = Resources;
   _showModal: boolean;
   imageSource: string[] = [
     'https://images.unsplash.com/photo-1503174971373-b1f69850bded?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
@@ -59,13 +61,15 @@ export class TradecardComponent implements OnInit {
     this.tradeService.updateTrade(this.tradeDetails).subscribe(
       (response) => {
         this.notificationService.addSuccess(
-          'Trade Details deleted succesfully !!'
+          this.resources.TradeDetailsDeleteSuccess
         );
         this.deleteEvent.emit(null);
       },
 
       (error) => {
-        this.notificationService.addError('Trade Details delete failed !!');
+        this.notificationService.addError(
+          this.resources.TradeDetailsDeleteFail
+        );
       }
     );
   }

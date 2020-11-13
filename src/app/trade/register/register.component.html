@@ -11,17 +11,17 @@
 <div>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <app-input label="Item Name" [control]="registerForm.get('item_name')"></app-input>
+            <app-input label="{{resources.ItemName}}" [control]="registerForm.get('item_name')"></app-input>
 
             <div class="field">
-                <label class="label">Item Description</label>
+                <label class="label">{{resources.ItemDescription}}</label>
                 <div class="control">
                     <textarea class="form-control" [formControl]="registerForm.get('item_desc')"></textarea>
                 </div>
             </div>
-            <app-input label="Contact Number" [control]="registerForm.get('contact_number')"></app-input>
-            <app-input label="Email" [control]="registerForm.get('contact_email')"></app-input>
-            <app-input label="Sell Amount" [control]="registerForm.get('amount')"></app-input>
+            <app-input label="{{resources.MobileNumber}}" [control]="registerForm.get('contact_number')"></app-input>
+            <app-input label="{{resources.Email}}" [control]="registerForm.get('contact_email')"></app-input>
+            <app-input label="{{resources.ItemSellAmount}}" [control]="registerForm.get('amount')"></app-input>
             <button mdbBtn color="primary" mdbWavesEffect class="button is-primary" [disabled]="registerForm.invalid" type="submit">
       {{ resources.Submit }}
     </button>

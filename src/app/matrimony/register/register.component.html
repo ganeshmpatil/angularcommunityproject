@@ -3,17 +3,17 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <div class="field">
-            <label class="label">Birth Date</label>
+            <label class="label">{{resources.BirthDate}}</label>
             <div class="control">
                 <input type="date" [formControl]="registerForm.get('birth_date')" />
             </div>
         </div>
-        <app-input label="Occupation" [control]="registerForm.get('occupation')"></app-input>
+        <app-input label="{{resources.Occupation}}" [control]="registerForm.get('occupation')"></app-input>
 
-        <app-input label="Gotra" [control]="registerForm.get('gotra')"></app-input>
+        <app-input label="{{resources.Gotra}}" [control]="registerForm.get('gotra')"></app-input>
 
         <div class="field">
-            <label class="label">Your Summary</label>
+            <label class="label">{{resources.MatrimonySummary}}</label>
             <div class="control">
                 <textarea class="form-control" [formControl]="registerForm.get('user_summary')"></textarea>
             </div>

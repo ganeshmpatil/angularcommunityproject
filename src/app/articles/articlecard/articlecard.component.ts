@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { ArticlesService } from '../articles.service';
+import { Resources } from '../../resources';
 import { NotificationService } from '../../shared/notification.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class ArticlecardComponent implements OnInit {
   @Input() showUpdateButton: boolean;
   @Output() deleteEvent: EventEmitter<any> = new EventEmitter();
   _showModal: boolean;
+  resources = Resources;
 
   constructor(
     private router: Router,
@@ -23,7 +25,7 @@ export class ArticlecardComponent implements OnInit {
   ngOnInit(): void {}
 
   showUpdateForm() {
-    let navigationExtras: NavigationExtras = {
+    const navigationExtras: NavigationExtras = {
       queryParams: {
         userid: this.articleDetail.userid,
         headline: this.articleDetail.headline,
@@ -36,14 +38,9 @@ export class ArticlecardComponent implements OnInit {
     this.router.navigate(['articles/home/registrationform'], navigationExtras);
   }
 
-  showArticleDetails(articleDetail) {
-    console.log('Showing article details...');
-  }
-
   toggleModal() {
     this._showModal = !this._showModal;
-
-    console.log('Modal flag is ' + this._showModal);
+   // console.log('Modal flag is ' + this._showModal);
   }
 
   delete() {
@@ -51,14 +48,13 @@ export class ArticlecardComponent implements OnInit {
     this.articleService.updateArticles(this.articleDetail).subscribe(
       (response) => {
         this.notificationService.addSuccess(
-          'Article Details deleted succesfully !!'
+         this.resources.ArticleDetailsDeleteSuccess
         );
-        console.log(this.deleteEvent);
         this.deleteEvent.emit(null);
       },
 
       (error) => {
-        this.notificationService.addError('Article Details delete failed !!');
+        this.notificationService.addError(this.resources.ArticleDetailsDeleteFail);
         console.log(error);
       }
     );

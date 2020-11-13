@@ -1,13 +1,13 @@
 <form [formGroup]="searchForm" (ngSubmit)="doSearch()">
   <div class="form-group">
     <select [formControl]="searchForm.get('searchTerm')" class="form-control">
-      <option disabled>Select Search Field</option>    
-      <option>Choose Field</option> 
+      <option disabled>{{resources.SelectSearchField}}</option>    
+      <option>{{resources.ChooseField}}</option> 
       <option *ngFor="let item of dropDownItems | keyvalue" [value]=item.key>{{ item.value }}</option>
     </select>
 
     <app-input    
-    label= "Enter search value "  
+    label= "{{resources.EnterSearchValue}}"  
       [control]="searchForm.get('searchValue')"
     ></app-input>
     <br/>
@@ -19,11 +19,11 @@
       class="button is-primary"
       type="submit"
     >
-      Search
+     {{resources.Search}}
     </button>
 
     <button class="button is-warning" type="button" (click)="onCancelClick()">
-        Cancel
+      {{resources.Cancel}}
       </button>
 
     <!-- Form Control values:- {{searchForm.value.searchValue}} <> {{searchForm.value.searchTerm}} -->

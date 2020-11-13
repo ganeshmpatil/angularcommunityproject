@@ -9,14 +9,14 @@
     <ng-container *ngIf="articleDetail.description.length > 200; else elseBlock"
       ><div>
         {{ articleDetail.description | slice: 0:200 }} ...
-        <a [routerLink]="" (click)="_showModal = true">More info</a>
+        <a [routerLink]="" (click)="_showModal = true">{{resources.MoreInfo}}</a>
       </div>
     </ng-container>
     <ng-template #elseBlock>{{ articleDetail.description }}</ng-template>
     <div></div>
     Posted by :- {{ articleDetail.userid }}
-    <button *ngIf="showUpdateButton" (click)="showUpdateForm()">Update</button>
-    <button *ngIf="showUpdateButton" (click)="delete()">Delete</button>
+    <button *ngIf="showUpdateButton" (click)="showUpdateForm()">{{resources.Update}}</button>
+    <button *ngIf="showUpdateButton" (click)="delete()">{{resources.Delete}}</button>
   </div>
 </div>
 

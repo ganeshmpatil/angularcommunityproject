@@ -8,7 +8,6 @@ import { Socket } from 'ngx-socket-io';
 import { LoginService } from '../../shared/login.service';
 import { NotificationService } from '../../shared/notification.service';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -17,12 +16,11 @@ import { NotificationService } from '../../shared/notification.service';
 export class RegisterComponent implements OnInit {
   @Input() mode: 'CREATE' | 'UPDATE' = 'CREATE';
   resources = Resources;
-  headline  = '';
+  headline = '';
   description = '';
   recordnumber: any;
   moduleName: 'article';
   imageUploadStatus: 'SUCCESS' | 'FAILED' = undefined;
-
 
   constructor(
     private socket: Socket,
@@ -51,27 +49,48 @@ export class RegisterComponent implements OnInit {
     userid: new FormControl(this.loginService.loginUserId, []),
     headline: new FormControl(this.headline, [Validators.required]),
     description: new FormControl(this.description, [Validators.required]),
-    photo: new FormControl('', []),    
+    photo: new FormControl('', []),
   });
 
   onSubmit() {
     this.registerForm.value['status'] = 'A';
 
     if (!this.isUpdateMode()) {
-      if (this.imageUploadStatus === undefined || this.imageUploadStatus === 'FAILED'){
-        this.notificationService.addError('please upload images before submit.');
+      if (
+        this.imageUploadStatus === undefined ||
+        this.imageUploadStatus === 'FAILED'
+      ) {
+        this.notificationService.addError(
+          this.resources.ImageUploadValidation
+        );
         return;
       }
       this.articleService.createArticles(this.registerForm.value).subscribe(
         (response) => {
+          this.notificationService.addSuccess(
+            this.resources.ArticleSaveSuccess
+          );
           this.router.navigate(['articles/home']);
         },
-        (error) => console.log(error)
+        (error) => {
+          this.notificationService.addError(
+            this.resources.ArticleSaveFail
+          );
+        }
       );
     } else {
       this.articleService.updateArticles(this.registerForm.value).subscribe(
-        (response) => this.router.navigate(['articles/home']),
-        (error) => console.log(error)
+        (response) => {
+          this.notificationService.addSuccess(
+            this.resources.ArticleUpdateSuccess
+          );
+          this.router.navigate(['articles/home']);
+        },
+        (error) => {
+          this.notificationService.addError(
+            this.resources.ArticleUpdateFail
+          );
+        }
       );
     }
   }
@@ -90,13 +109,11 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['articles/home']);
   }
 
-  handleImageUploadResponse(data)
-  {
-    if (data.fileName){
+  handleImageUploadResponse(data) {
+    if (data.fileName) {
       this.registerForm.get('photo').setValue(data.fileName);
       this.imageUploadStatus = 'SUCCESS';
-    }
-    else{
+    } else {
       this.imageUploadStatus = 'FAILED';
     }
   }

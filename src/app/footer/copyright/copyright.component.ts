@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-copyright',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CopyrightComponent implements OnInit {
 
+  resources = Resources;
   constructor() { }
 
   ngOnInit(): void {

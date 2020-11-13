@@ -3,6 +3,7 @@ import { NotificationService } from '../../shared/notification.service';
 import { Socket } from 'ngx-socket-io';
 import { LoginService } from '../../shared/login.service';
 import { Form, FormControl } from '@angular/forms';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-image-upload',
@@ -18,6 +19,7 @@ export class ImageUploadComponent implements OnInit {
   imageSrc: string | ArrayBuffer;
   imageObj: File;
   imageFileName: string;
+  resources = Resources;
 
   constructor(
     private notificationService: NotificationService,
@@ -51,10 +53,10 @@ export class ImageUploadComponent implements OnInit {
       if (data.userid === this.loginService.loginUserId) {
         if (data.err) {
           this.notificationService.addError(
-            'Image upload failed with error:' + data.err
+            this.resources.UploadImageFail
           );
         } else {
-          this.notificationService.addSuccess('Image uploaded successfully !!');
+          this.notificationService.addSuccess(this.resources.UploadImageSuccess);
           this.imageUploadResponseEvent.emit({
             fileName: this.imageFileName,
             counter: this.counter,

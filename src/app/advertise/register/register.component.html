@@ -3,7 +3,7 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <button mdbBtn color="primary" mdbWavesEffect class="button is-primary" [disabled]="registerForm.invalid" type="submit">
-      Submit
+          {{ resources.Submit }}
     </button>
         <button class="button is-warning" type="button" (click)="onResetClick()">
       {{ resources.Reset }}

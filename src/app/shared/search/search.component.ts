@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit {
   @Output() searchResult: EventEmitter<any> = new EventEmitter();
   @Output() cancel: EventEmitter<any> = new EventEmitter();
   @Input() dropDownItems: [];
+  resources = Resources;
 
   constructor(
     private searchService: SearchService,

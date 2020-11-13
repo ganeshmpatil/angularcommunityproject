@@ -111,30 +111,30 @@ export class RegisterformComponent implements OnInit {
     if (!this.isUpdateMode) {
       if (this.imageUploadStatus === undefined || this.imageUploadStatus === 'FAILED')
       {
-        this.notificationService.addError('Please upload your photo before Save !!');
+        this.notificationService.addError(this.resources.ImageUploadValidation);
         return;
       }
       this.userService.saveUser(this.registerForm.value).subscribe(
         (response) => {
           this.notificationService.addSuccess(
-            'User Details saved succesfully !!'
+            this.resources.UserSaveSuccess
           );
           this.router.navigate(['registry/home']);
         },
         (error) => {
-          this.notificationService.addError('User Details save Failed !!');
+          this.notificationService.addError(this.resources.UserSaveFail);
         }
       );
     } else {
       this.userService.updateUser(this.registerForm.value).subscribe(
         (response) => {
           this.notificationService.addSuccess(
-            'User Details updated succesfully !!'
+            this.resources.UserUpdateSuccess
           );
           this.router.navigate(['registry/home']);
         },
         (error) => {
-          this.notificationService.addError('User Details save failed !!');
+          this.notificationService.addError(this.resources.UserUpdateFail);
         }
       );
     }

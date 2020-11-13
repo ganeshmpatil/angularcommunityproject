@@ -19,9 +19,9 @@ export class BloodRegisterComponent implements OnInit {
     private bloodService: BloodService,
     private notificationService: NotificationService,
     private loginService: LoginService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   registerForm = new FormGroup({
     userid: new FormControl(this.loginService.loginUserId, []),
@@ -34,13 +34,12 @@ export class BloodRegisterComponent implements OnInit {
     this.bloodService.createBloodDetails(this.registerForm.value).subscribe(
       (response) => {
         this.notificationService.addSuccess(
-          'Blood Details saved succesfully !!'
+          this.resources.BloodDetailsSaveSuccess
         );
         this.router.navigate(['blooddetails/home']);
       },
-
       (error) => {
-        this.notificationService.addError('Blood Details save Failed !!');
+        this.notificationService.addError(this.resources.BloodDetailsSaveFail);
         console.log(error);
       }
     );

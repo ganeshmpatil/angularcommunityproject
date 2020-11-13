@@ -21,20 +21,6 @@
 
         <app-input label="{{ resources.LastName }}" [control]="registerForm.get('last_name')"></app-input>
 
-        <!--   <label class="label">Photo/फोटो</label>
-    <div class="file-field md-form form-control">
-      <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
-        <input
-          type="file"
-          mdbFileSelect
-          (change)="onUpload($event)"
-          [formControl]="registerForm.get('user_image_input')"
-          placeholder="Upload Image"
-        />
-        <button (click)="onImageUpload($event)">Upload Image</button>
-      </div>
-    </div> -->
-
         <app-input label="{{ resources.FatherName }}" [control]="registerForm.get('father_full_name')"></app-input>
 
         <div class="form-group" *ngIf="!isUpdateMode()">

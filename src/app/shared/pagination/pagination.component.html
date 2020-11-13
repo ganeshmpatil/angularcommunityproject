@@ -4,13 +4,13 @@
       (click)="onFirstClick()"
       *ngIf="showAdditionalNavigationOptions"
       class="page-link"
-      >First</a
+      >{{resources.FirstPage}}</a
     >
     <a
       (click)="onPreviousSetClick()"
       *ngIf="showAdditionalNavigationOptions && showPrevButton"
       class="page-link"
-      >Prev</a
+      >{{resources.PreviousPage}}</a
     >
 
     <li
@@ -30,13 +30,13 @@
       (click)="onNextSetClick()"
       *ngIf="showAdditionalNavigationOptions && showNextButton"
       class="page-link"
-      >Next</a
+      >{{resources.NextPage}}</a
     >
     <a
       (click)="onLastClick()"
       *ngIf="showAdditionalNavigationOptions"
       class="page-link"
-      >Last</a
+      >{{resources.LastPage}}</a
     >
   </ul>
 </nav>

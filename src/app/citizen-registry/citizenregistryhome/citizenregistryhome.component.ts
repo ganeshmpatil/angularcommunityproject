@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CitizenregistrationService } from '../citizenregistration.service';
 import { LoginService } from '../../shared/login.service';
 import { PaginationComponent } from '../../shared/pagination/pagination.component';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-citizenregistryhome',
@@ -12,20 +13,20 @@ import { PaginationComponent } from '../../shared/pagination/pagination.componen
 export class CitizenregistryhomeComponent implements OnInit {
   allUserDetails: any[];
   itemsPerPage = 5;
-  loggedInUSerDetails: any;
   loggedinUserId: any;
   count: number;
   numberOfPages: any;
   currentPage = 1;
   isSearchMode = false;
+  resources = Resources;
   searchOptions = {
-    first_name: 'First Name',
-    last_name: 'Last Name',
-    father_full_name: 'Father Name',
-    mobile_number: 'Mobile Number',
-    village_name: 'Village Name',
-    city: 'City',
-    education_degree: 'Education'
+    first_name: this.resources.FirstName,
+    last_name: this.resources.LastName,
+    father_full_name: this.resources.FatherName,
+    mobile_number: this.resources.MobileNumber,
+    village_name: this.resources.VillageName,
+    city: this.resources.City,
+    education_degree: this.resources.EducationDegree
   };
   constructor(
     private route: ActivatedRoute,

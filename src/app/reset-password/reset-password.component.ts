@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { LoginService as PostAuthLoginService } from '../shared/login.service';
 import { NotificationService } from '../shared/notification.service';
+import { Resources } from './../resources';
 
 @Component({
   selector: 'app-reset-password',
@@ -12,10 +13,12 @@ import { NotificationService } from '../shared/notification.service';
 })
 export class ResetPasswordComponent implements OnInit {
   loginForm: FormGroup;
-  returnUrl: string = '/';
+  returnUrl = '/';
   submitted = false;
   loading = false;
   token: string;
+  resources = Resources;
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -50,13 +53,16 @@ export class ResetPasswordComponent implements OnInit {
       .subscribe(
         (data) => {
           this.loading = false;
+          this.notificationService.addSuccess(
+            this.resources.PasswordResetSuccess
+          );
           this.router.navigate([this.returnUrl]);
           this.loginStatus.loginUserId = this.f.username.value;
         },
         (error) => {
           this.loginStatus.loginUserId = undefined;
           this.notificationService.addError(
-            'Error Occured while Passeord Reset '
+            this.resources.PasswordResetFail
           );
           this.loading = false;
         }

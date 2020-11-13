@@ -68,18 +68,18 @@ export class RegisterComponent implements OnInit {
     if (!this.isUpdateMode()) {
       if (this.imageUploadStatus === undefined || this.imageUploadStatus === 'FAILED')
       {
-        this.notificationService.addError('Please upload image before submitting the form');
+        this.notificationService.addError(this.resources.ImageUploadValidation);
       } else {
       this.matrimonyService.createMatrimony(this.registerForm.value).subscribe(
         (response) => {
           this.notificationService.addSuccess(
-            'Matrimony Details saved succesfully !!'
+            this.resources.MatrimonyDetailsSaveSuccess
           );
           this.router.navigate(['matrimony/home']);
         },
         (error) => {
           console.log(error);
-          this.notificationService.addError('Matrimony Details save Failed !!');
+          this.notificationService.addError(this.resources.MatrimonyDetailsSaveFail);
         }
       );
     }
@@ -88,12 +88,12 @@ export class RegisterComponent implements OnInit {
         (response) => {
           this.router.navigate(['matrimony/home']);
           this.notificationService.addSuccess(
-            'Matrimony Details updated succesfully !!'
+            this.resources.MatrimonyDetailsUpdateSuccess
           );
         },
         (error) => {
           console.log(error);
-          this.notificationService.addError('Matrimony Details save failed !!');
+          this.notificationService.addError(this.resources.MatrimonyDetailsUpdateFail);
         }
       );
     }

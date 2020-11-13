@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../shared/login.service';
 import { MatrimonyService } from '../matrimony.service';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-matrimony-home',
@@ -16,11 +17,13 @@ export class MatrimonyHomeComponent implements OnInit {
   currentPage = 1;
   count: number;
   isSearchMode = false;
+  resources = Resources;
+
   searchOptions = {
-    first_name: 'First Name',
-    last_name: 'Last Name',
-    gotra: 'Gotra',
-    occupation: 'Occupation'
+    first_name: this.resources.FirstName,
+    last_name: this.resources.LastName,
+    gotra: this.resources.Gotra,
+    occupation: this.resources.Occupation
   };
   constructor(
     private loginService: LoginService,

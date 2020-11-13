@@ -1,7 +1,7 @@
-<label class="label">Photo/फोटो</label>
+<label class="label">{{resources.Photo}}</label>
 <div class="file-field md-form form-control">
     <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
-        <input type="file" mdbFileSelect (change)="onUpload($event)" placeholder="Upload Image" />
-        <button (click)="onImageUpload($event)">Upload Image</button>
+        <input type="file" mdbFileSelect (change)="onUpload($event)" placeholder="{{resources.UploadImage}}" />
+        <button (click)="onImageUpload($event)">{{resources.UploadImage}}</button>
     </div>
 </div>

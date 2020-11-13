@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ArticlesService } from '../articles.service';
 import { LoginService } from '../../shared/login.service';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-articles-home',
@@ -16,10 +17,11 @@ export class ArticlesHomeComponent implements OnInit {
   loggedinUserId: any;
   count: number;
   isSearchMode = false;
+  resources = Resources;
   searchOptions = {
-    headline: 'Headline',
-    first_name: 'First Name',
-    last_name: 'Last Name'
+    headline: this.resources.ArticleHeadline,
+    first_name: this.resources.FirstName,
+    last_name: this.resources.LastName
   };
   constructor(
     private route: ActivatedRoute,
@@ -56,7 +58,6 @@ export class ArticlesHomeComponent implements OnInit {
       )
       .subscribe(
         (response: any) => {
-          console.log('all user articles ' + response);
           this.allArticlesDetails = response;
         },
         (error) => console.log(error)
@@ -71,7 +72,7 @@ export class ArticlesHomeComponent implements OnInit {
     this.getAllArticleDetails(payload, this.itemsPerPage);
   }
   refereshOnDelete() {
-    console.log('refereshOnDelete called');
+
     this.getCount();
     this.getAllArticleDetails(this.currentPage, this.itemsPerPage);
   }

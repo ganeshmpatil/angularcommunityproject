@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { DataProvider } from '../../shared/data-provider';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-citizencard',
@@ -8,9 +9,9 @@ import { DataProvider } from '../../shared/data-provider';
   styleUrls: ['./citizencard.component.css'],
 })
 export class CitizencardComponent implements OnInit {
-  @Input() showUpdateButton: boolean = false;
+  @Input() showUpdateButton = false;
   @Input() userDetails: any;
-
+  resources = Resources;
   constructor(private router: Router, private dataProvider: DataProvider) {}
 
   ngOnInit(): void {}

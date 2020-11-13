@@ -1,9 +1,9 @@
 <button (click)="showRegistrationForm()" *ngIf="isUserLoggedIn()">
-  Register
+  {{resources.Register}}
 </button>
 <br/>
 <div>
-  Search 
+  {{resources.Search}} 
 </div>
 <br/>
 <div>
@@ -13,7 +13,6 @@
    (searchResult)="handleSearchResult($event)"
    (cancel)="handleSearchCancel()"
    >
-
   </app-search>
 </div>
 <br/>

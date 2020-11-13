@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
 
     if (this.imageUploadStatus === undefined || this.imageUploadStatus === 'FAILED')
     {
-      this.notificationService.addError('Please upload imaged first');
+      this.notificationService.addError(this.resources.ImageUploadValidation);
       return;
     }
     this.advertiseService.createAdvertise(this.registerForm.value).subscribe(

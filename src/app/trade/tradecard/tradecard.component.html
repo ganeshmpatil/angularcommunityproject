@@ -4,30 +4,30 @@
       <img class="card-img-top" [src]="imageSource[1]" alt="Card image cap" />
     </a>
     <div class="text-block">
-      <h6>3 photos</h6>
+      <h6>{{resources.Photo}}</h6>
     </div>
   </div>
 
   <div class="card-body">
     <h5 class="card-title">
-      Posted By :- {{ tradeDetails.first_name }} {{ tradeDetails.last_name }}
+      {{resources.PostedBy}} : {{ tradeDetails.first_name }} {{ tradeDetails.last_name }}
     </h5>
     <p class="card-text"></p>
-    <div>Item Name : {{ tradeDetails.item_name }}</div>
+    <div>{{resources.ItemName}}  : {{ tradeDetails.item_name }}</div>
     <br />
-    <div>Item Desc : {{ tradeDetails.item_desc }}</div>
-    <div>Contact Number :{{ tradeDetails.contact_number }}</div>
+    <div>{{resources.ItemDescription}} : {{ tradeDetails.item_desc }}</div>
+    <div>{{resources.ContactNumber}} :{{ tradeDetails.contact_number }}</div>
     <br />
-    <div>Contact Email : {{ tradeDetails.contact_email }}</div>
+    <div>{{resources.Email}} : {{ tradeDetails.contact_email }}</div>
     <br />
-    <div>Amount : {{ tradeDetails.amount }}/-</div>
+    <div>{{resources.ItemSellAmount}} : {{ tradeDetails.amount }}/-</div>
     <br />
-    <button *ngIf="showUpdateButton" (click)="showUpdateForm()">Update</button>
-    <button *ngIf="showUpdateButton" (click)="delete()">Delete</button>
+    <button *ngIf="showUpdateButton" (click)="showUpdateForm()">{{resources.Update}}</button>
+    <button *ngIf="showUpdateButton" (click)="delete()">{{resources.Delete}}</button>
   </div>
 </div>
 
 <app-modal [showModal]="true" (dismiss)="toggleModal()" *ngIf="_showModal">
-  <div modalTitle>Photo</div>
+  <div modalTitle>{{resources.Photo}}</div>
   <app-image-list [imageList]="imageSource"></app-image-list>
 </app-modal>

@@ -83,19 +83,29 @@ export class RegisterComponent implements OnInit {
 
     if (!this.isUpdateMode()) {
       if (this.imageUploadStatus === undefined || this.imageUploadStatus === 'FAILED'){
-        this.notificationService.addError('please upload images before submit.');
+        this.notificationService.addError(this.resources.ImageUploadValidation);
         return;
       }
       this.tradeService.createTrade(this.registerForm.value).subscribe(
         (response) => {
+          this.notificationService.addSuccess(this.resources.TradeDetailsSaveSuccess);
           this.router.navigate(['trade/home']);
         },
-        (error) => console.log(error)
+        (error) => {
+          console.log(error);
+          this.notificationService.addError(this.resources.TradeDetailsSaveFail);
+        }
       );
     } else {
       this.tradeService.updateTrade(this.registerForm.value).subscribe(
-        (response) => this.router.navigate(['trade/home']),
-        (error) => console.log(error)
+        (response) => {
+          this.router.navigate(['trade/home']);
+          this.notificationService.addSuccess(this.resources.TradeDetailsUpdateSuccess);
+        },
+        (error) => {
+          console.log(error);
+          this.notificationService.addSuccess(this.resources.TradeDetailsUpdateFail);
+        }
       );
     }
   }

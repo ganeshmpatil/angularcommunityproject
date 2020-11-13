@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BloodService } from '../blood.service';
 import { LoginService } from '../../shared/login.service';
+import { Resources } from '../../resources';
 @Component({
   selector: 'app-blood-home',
   templateUrl: './blood-home.component.html',
@@ -9,6 +10,7 @@ import { LoginService } from '../../shared/login.service';
 })
 export class BloodHomeComponent implements OnInit {
   allUsersBloodDetails: any;
+  resources = Resources;
   constructor(
     private bloodService: BloodService,
     private router: Router,

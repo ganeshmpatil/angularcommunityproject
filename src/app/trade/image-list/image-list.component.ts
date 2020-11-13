@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-image-list',
@@ -7,7 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ImageListComponent implements OnInit {
   @Input() imageList: string[];
-  imageIndex: number = 0;
+  imageIndex = 0;
+  resources = Resources;
 
   constructor() {}
 

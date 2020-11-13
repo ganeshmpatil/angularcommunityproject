@@ -10,15 +10,15 @@
     </h5>
     <p class="card-text"></p>
     <div>
-      Name : {{ matrimonyDetail.first_name }} {{ matrimonyDetail.last_name }}
+      {{resources.Name}} : {{ matrimonyDetail.first_name }} {{ matrimonyDetail.last_name }}
     </div>
     <br />
-    <div>Occupation : {{ matrimonyDetail.occupation }}</div>
-    <div>Age :{{ age }}</div>
+    <div>{{resources.Occupation}} : {{ matrimonyDetail.occupation }}</div>
+    <div>{{resources.Age}} :{{ age }}</div>
     <br />
-    <div>Summary : {{ matrimonyDetail.user_summary }}</div>
+    <div>{{resources.Summary}} : {{ matrimonyDetail.user_summary }}</div>
     <br />
-    <div>Gotra : {{ matrimonyDetail.gotra }}</div>
+    <div>{{resources.Gotra}} : {{ matrimonyDetail.gotra }}</div>
     <br />
     <button *ngIf="showUpdateButton" (click)="showUpdateForm()">Update</button>
     <button *ngIf="showUpdateButton" (click)="delete()">Delete</button>
