@@ -34,7 +34,17 @@ export class TradeHomeComponent implements OnInit {
     this.getAllTradeDetails(this.currentPage, this.itemsPerPage);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.tradeService.getTradeCount().subscribe(
+      (response: any) => {
+        this.count = response.count;
+        this.numberOfPages = Array(
+          Math.ceil(this.count / this.itemsPerPage)
+        ).fill(1);
+      },
+      (error) => console.log(error)
+    );
+  }
 
   getCount() {
     this.tradeService.getTradeCount().subscribe(
