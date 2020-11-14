@@ -10,7 +10,7 @@
   
   <ng-container *ngIf="showErrors()">
     <div class="alert alert-danger" *ngIf="control.errors.required">
-      Value is required.
+      {{resources.ValueRequired}}
     </div>
     <div class="alert alert-danger" *ngIf="control.errors.minlength">
       Value you entered is
@@ -26,8 +26,8 @@
       {{ control.errors.maxlength.requiredLength }}
       characters
     </div>
-    <div class="help is-danger" *ngIf="control.errors.pattern">
-      Invalid format
+    <div class="alert alert-danger" *ngIf="control.errors.pattern">
+      {{resources.InvalidPattern}}
     </div>
   </ng-container>
 </div>

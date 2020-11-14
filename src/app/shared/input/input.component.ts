@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-input',
@@ -10,6 +11,7 @@ export class InputComponent implements OnInit {
   @Input() control: FormControl;
   @Input() label: string;
   @Input() newLine: boolean;
+  resources = Resources;
 
 
   constructor() {}

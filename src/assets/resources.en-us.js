@@ -112,5 +112,7 @@ export const resources = {
   ForgotPassword: "Forgot Password",
   ForgotPasswordInstruction: " Please enter email id and click on Submit. Password reset url will be sent to registered email id.",
   ChooseGender: "Choose Gender",
-  PasswordMismatch:"Password do not match !"
+  PasswordMismatch:"Password do not match !",
+  ValueRequired:"Value is required ",
+  InvalidPattern:" Invalid Pattern",
 }

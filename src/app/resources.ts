@@ -113,4 +113,6 @@ export abstract class Resources {
   public static ForgotPasswordInstruction: string = null;
   public static ChooseGender: string = null;
   public static PasswordMismatch: string = null;
+  public static ValueRequired: string = null;
+  public static InvalidPattern: string = null;
 }
