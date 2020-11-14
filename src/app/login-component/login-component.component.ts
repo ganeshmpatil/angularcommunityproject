@@ -73,6 +73,7 @@ export class LoginComponentComponent implements OnInit {
             this.loading = false;
             this.router.navigate([this.returnUrl]);
             this.loginStatus.loginUserId = this.f.username.value;
+            this.loginService.updateLoginStatusGloabally();
           } else {
             this.loading = false;
             this.loginStatus.loginUserId = undefined;

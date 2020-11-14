@@ -1,3 +1,4 @@
+import { LoginComponentComponent } from './login-component/login-component.component';
 import { Component } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { LocalizedComponent } from './localized.component';
@@ -6,6 +7,8 @@ import { Resources } from './resources';
 import { EventPublishService } from './event-publish.service';
 import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 import { LoginService } from './shared/login.service';
+import { LoginService as LoginServiceMiddleware } from './login.service';
+
 
 @Component({
   selector: 'app-root',
@@ -26,7 +29,8 @@ export class AppComponent extends LocalizedComponent {
     private eventPublishService: EventPublishService,
     private router: Router,
     private route: ActivatedRoute,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private loginServiceMiddleware: LoginServiceMiddleware
   ) {
     super();
     this.homeRouteActive = true;
@@ -36,6 +40,10 @@ export class AppComponent extends LocalizedComponent {
       true
     );
     this.isHomeRouteActive();
+    this.loginServiceMiddleware.login$.subscribe((response) => {
+      console.log('Received Observer response in app component ' + response);
+      this.isUserLoggedIn = true;
+    });
   }
 
   public languageSelected($event, language: Language): void {
