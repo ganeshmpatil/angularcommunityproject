@@ -26,9 +26,9 @@
         <div class="form-group" *ngIf="!isUpdateMode()">
             <label for="gender">{{ resources.Gender }}</label>
             <select (change)="onGenderSelect($event)" [formControl]="registerForm.get('gender')" class="form-control">
-        <option>{{ resources.ChooseGender }}</option>
-        <option *ngFor="let gender of genderList">{{ gender }}</option>
-      </select>
+                <option>{{ resources.ChooseGender }}</option>
+                <option *ngFor="let gender of genderList">{{ gender }}</option>
+            </select>
         </div>
 
         <app-input label="{{ resources.MobileNumber }}" [control]="registerForm.get('mobile_number')"></app-input>
@@ -61,14 +61,14 @@
         </div>
 
         <button class="button is-primary" [disabled]="registerForm.invalid" type="submit">
-      {{ resources.Submit }}
-    </button>
+            {{ resources.Submit }}
+        </button>
         <button class="button is-warning" type="button" *ngIf="!isUpdateMode()" (click)="onResetClick()">
-      {{ resources.Reset }}
-    </button>
+            {{ resources.Reset }}
+        </button>
         <button class="button is-warning" type="button" (click)="onCancelClick()">
-      {{ resources.Cancel }}
-    </button>
+            {{ resources.Cancel }}
+        </button>
     </div>
 </form>
 <hr />
