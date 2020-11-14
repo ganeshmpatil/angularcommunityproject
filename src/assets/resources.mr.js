@@ -112,4 +112,5 @@ export const resources = {
   ForgotPassword: "पासवर्ड विसरलात",
   ForgotPasswordInstruction: " कृपया ईमेल आयडी प्रविष्ट करा आणि सबमिट वर क्लिक करा. पासवर्ड रीसेट url नोंदणीकृत ईमेल आयडीवर पाठविली जाईल.",
   ChooseGender: "स्त्री  किंवा  पुरुष निवडा ",
+  PasswordMismatch:"पासवर्ड जुळत नाही !"
 }

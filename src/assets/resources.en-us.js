@@ -34,7 +34,7 @@ export const resources = {
   AdvertiseModuleLabel: "Advertize",
   ArticleHeadline: "Headline",
   ArticleSummary: "Content",
-  ImageUploadValidation: "Please upload imaged first",
+  ImageUploadValidation: "Please upload image first",
   ImageUploadSuccess: "Image uploaded successfully",
   AdvertsementDetailsSaveSuccess: "Advertize Save success",
   AdvertiseDetailsSaveFail: "Advertize save Failed",
@@ -112,4 +112,5 @@ export const resources = {
   ForgotPassword: "Forgot Password",
   ForgotPasswordInstruction: " Please enter email id and click on Submit. Password reset url will be sent to registered email id.",
   ChooseGender: "Choose Gender",
+  PasswordMismatch:"Password do not match !"
 }

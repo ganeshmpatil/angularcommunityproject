@@ -9,12 +9,18 @@
             <div class="control">
                 <input type="password" class="form-control" [formControl]="registerForm.get('user_password')" />
             </div>
+            <div *ngIf="f.user_password.touched && f.user_password.errors" class="alert alert-danger">
+                <div *ngIf="f.user_password.errors.required">{{resources.PasswordRequired}}</div>
+              </div>
         </div>
         <div class="field" *ngIf="!isUpdateMode()">
             <label class="label">{{ resources.ConfirmPassword }}</label>
             <div class="control">
                 <input type="password" class="form-control" [formControl]="registerForm.get('user_confirm_password')" />
             </div>
+            <div *ngIf="f.user_confirm_password.touched && f.user_confirm_password.errors" class="alert alert-danger">
+                <div *ngIf="f.user_confirm_password.errors.required">{{resources.ConfirmPasswordRequired}}</div>
+              </div>
         </div>
 
         <app-input label="{{ resources.FirstName }}" [control]="registerForm.get('first_name')"></app-input>

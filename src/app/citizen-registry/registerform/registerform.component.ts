@@ -10,6 +10,7 @@ import { DataProvider } from '../../shared/data-provider';
 import { Resources } from '../../resources';
 import { NotificationService } from '../../shared/notification.service';
 
+
 @Component({
   selector: 'app-registerform',
   templateUrl: './registerform.component.html',
@@ -79,10 +80,14 @@ export class RegisterformComponent implements OnInit {
   /*End of Constructor */
   genderList: any = ['Male', 'Female'];
 
+  get f() {
+    return this.registerForm.controls;
+  }
+
   registerForm = new FormGroup({
     userid: new FormControl('', [Validators.required]),
-    user_password: new FormControl('', []),
-    user_confirm_password: new FormControl('', []),
+    user_password: new FormControl('', [Validators.required]),
+    user_confirm_password: new FormControl('', [Validators.required]),
     first_name: new FormControl('', [Validators.required]),
     last_name: new FormControl('', [Validators.required]),
     father_full_name: new FormControl('', [Validators.required]),
@@ -95,22 +100,27 @@ export class RegisterformComponent implements OnInit {
     address_line_3: new FormControl('', []),
     suburb_taluka: new FormControl('', [Validators.required]),
     city: new FormControl('', []),
-    state_name: new FormControl('महाराष्ट्र', [Validators.required]),
+    state_name: new FormControl('', [Validators.required]),
     pin_code: new FormControl('', [Validators.required]),
     user_image_input: new FormControl('', []),
     user_image: new FormControl('', []),
     education_degree: new FormControl('', []),
     user_summary: new FormControl('', []),
-  });
+  }
+  );
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSubmit() {
+
+    if (this.registerForm.get('user_password').value !== this.registerForm.get('user_confirm_password').value) {
+      this.notificationService.addError('Passwords dont match');
+      return;
+    }
     this.registerForm.value['status'] = 'A';
-    console.log(this.registerForm.value);
-    if (!this.isUpdateMode) {
-      if (this.imageUploadStatus === undefined || this.imageUploadStatus === 'FAILED')
-      {
+    if (!this.isUpdateMode()) {
+      console.log('imageUploadStatus in create mode ' + this.imageUploadStatus);
+      if (!this.imageUploadStatus || this.imageUploadStatus === 'FAILED') {
         this.notificationService.addError(this.resources.ImageUploadValidation);
         return;
       }
@@ -126,6 +136,7 @@ export class RegisterformComponent implements OnInit {
         }
       );
     } else {
+      console.log('imageUploadStatus in update mode ' + this.imageUploadStatus);
       this.userService.updateUser(this.registerForm.value).subscribe(
         (response) => {
           this.notificationService.addSuccess(
@@ -160,13 +171,12 @@ export class RegisterformComponent implements OnInit {
     return false;
   }
 
-  handleImageUploadResponse(data)
-  {
-    if (data.fileName){
+  handleImageUploadResponse(data) {
+    if (data.fileName) {
       this.registerForm.get('user_image').setValue(data.fileName);
       this.imageUploadStatus = 'SUCCESS';
     }
-    else{
+    else {
       this.imageUploadStatus = 'FAILED';
     }
   }

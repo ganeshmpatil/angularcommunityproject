@@ -3,22 +3,23 @@
   <div class="control">
     <input
       class="form-control"
-      [ngClass]="{ 'is-danger': showErrors() }"
+      [ngClass]="{ 'alert alert-danger': showErrors() }"
       [formControl]="control"
     />
   </div>
+  
   <ng-container *ngIf="showErrors()">
-    <div class="help is-danger" *ngIf="control.errors.required">
+    <div class="alert alert-danger" *ngIf="control.errors.required">
       Value is required.
     </div>
-    <div class="help is-danger" *ngIf="control.errors.minlength">
+    <div class="alert alert-danger" *ngIf="control.errors.minlength">
       Value you entered is
       {{ control.errors.minlength.actualLength }}
       characters long, but it must be at least
       {{ control.errors.minlength.requiredLength }}
       characters
     </div>
-    <div class="help is-danger" *ngIf="control.errors.maxlength">
+    <div class="alert alert-danger" *ngIf="control.errors.maxlength">
       Value you entered is
       {{ control.errors.maxlength.actualLength }}
       characters long, but it cannot be longer than

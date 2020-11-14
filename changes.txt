@@ -1,15 +1,13 @@
-1 ) Image processing done -- Done
-2 ) Search user functionality 10:22 -- 12:40 Done 
-3 ) Resouce Bundle changes.-- Pending...15:54 -- 18:00
-4 ) advertise page functionality
-5 ) rename login to logout post login -- Tommorrow
-	also provide signup button. -- Tomorrow
+4 ) advertise page functionality -- tomorrow
 6 ) Remove register button on matrimony and blood if posted.	 -- Day after Tomorrow 
 7 ) after signin image not showing on community page.
-8 ) Implement validation. -- Day after Tomorrow Today 
-9 ) Trades page not showing pagination. -- Tomorrow
+8 ) Implement validation. -- Today 17:15 -- 19:00
 10 ) Mail not going. -- Monday
-12) secret store. --Monday
+12 ) secret store. --Monday
+13 ) Randon First Slide error..
+14 ) Trade posted by Name correction Today 
+15 ) Image upload button click handle
+16 ) Handle Pin code numeric only on form validation.
 
 
 search drop down based on various values
