@@ -26,7 +26,7 @@
         <div class="form-group" *ngIf="!isUpdateMode()">
             <label for="gender">{{ resources.Gender }}</label>
             <select (change)="onGenderSelect($event)" [formControl]="registerForm.get('gender')" class="form-control">
-        <option>Choose Gender</option>
+        <option>{{ resources.ChooseGender }}</option>
         <option *ngFor="let gender of genderList">{{ gender }}</option>
       </select>
         </div>

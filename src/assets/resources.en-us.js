@@ -111,4 +111,5 @@ export const resources = {
   UserNameRequired: "User Name is required ",
   ForgotPassword: "Forgot Password",
   ForgotPasswordInstruction: " Please enter email id and click on Submit. Password reset url will be sent to registered email id.",
+  ChooseGender: "Choose Gender",
 }
