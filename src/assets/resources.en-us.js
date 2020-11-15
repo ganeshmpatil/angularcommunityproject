@@ -115,4 +115,7 @@ export const resources = {
   PasswordMismatch:"Password do not match !",
   ValueRequired:"Value is required ",
   InvalidPattern:" Invalid Pattern",
+  PostAddTitle:"Post Free Ad",
+  LoginToRegister:"Please Login / Signup to post",
+  AlreadyRegistred:"You have Already Registred",
 }

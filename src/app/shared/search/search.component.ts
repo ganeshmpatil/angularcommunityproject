@@ -20,7 +20,8 @@ export class SearchComponent implements OnInit {
   constructor(
     private searchService: SearchService,
     private notificatioService: NotificationService
-  ) {}
+  ) {
+  }
 
   searchForm = new FormGroup({
     searchTerm: new FormControl('', []),
@@ -36,7 +37,6 @@ export class SearchComponent implements OnInit {
       this.searchService
         .search(searchTerm, searchValue, this.searchEntity)
         .subscribe((response) => {
-          console.log(response);
           this.searchResult.emit(response);
         });
     } else {

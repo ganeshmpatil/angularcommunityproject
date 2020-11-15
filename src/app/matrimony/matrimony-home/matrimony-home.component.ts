@@ -3,6 +3,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../shared/login.service';
 import { MatrimonyService } from '../matrimony.service';
 import { Resources } from '../../resources';
+import { NotificationService } from '../../shared/notification.service';
+import * as _ from 'lodash';
+
+
 
 @Component({
   selector: 'app-matrimony-home',
@@ -29,7 +33,8 @@ export class MatrimonyHomeComponent implements OnInit {
     private loginService: LoginService,
     private matrimonyService: MatrimonyService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {
     this.loggedinUserId = this.loginService.loginUserId;
   }
@@ -64,7 +69,19 @@ export class MatrimonyHomeComponent implements OnInit {
   }
 
   showRegistrationForm() {
-    this.router.navigate(['registrationform'], { relativeTo: this.route });
+    this.matrimonyService.getMatrimonyById(this.loginService.loginUserId).subscribe(
+      (response) => {
+        if (!_.isEmpty(response)) {
+          this.notificationService.addError(this.resources.AlreadyRegistred);
+        }
+        else{
+          this.router.navigate(['registrationform'], { relativeTo: this.route });
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   refereshOnDelete() {

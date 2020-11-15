@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BannerComponent } from '../banner/banner.component';
 import { LoginService } from '../../shared/login.service';
+import { Resources } from '../../resources';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import { LoginService } from '../../shared/login.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  resources = Resources;
   constructor(
     private router: Router,
     private route: ActivatedRoute,

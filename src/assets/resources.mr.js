@@ -115,4 +115,7 @@ export const resources = {
   PasswordMismatch:"पासवर्ड जुळत नाही !",
   ValueRequired:"मूल्य आवश्यक आहे",
   InvalidPattern:" अवैध नमुना.  ",
+  PostAddTitle:"विनामूल्य जाहिरात पोस्ट करा",
+  LoginToRegister:"कृपया पोस्ट करण्यासाठी लॉगिन/साइन अप करा",
+  AlreadyRegistred:"आपण आधीच नोंदणी केली आहे",
 }

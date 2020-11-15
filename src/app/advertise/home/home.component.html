@@ -1,6 +1,11 @@
-<button (click)="showRegistrationForm()" *ngIf="isUserLoggedIn()">
-  Register
-</button>
-<div>
-  <app-banner></app-banner>
+<br />
+{{resources.PostAddTitle}}
+<br/>
+<br/>
+<div *ngIf="!isUserLoggedIn()">
+  {{resources.LoginToRegister}}
 </div>
+<br />
+<button (click)="showRegistrationForm()" *ngIf="isUserLoggedIn()">
+  {{resources.Register}}
+</button>

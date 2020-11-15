@@ -115,4 +115,8 @@ export abstract class Resources {
   public static PasswordMismatch: string = null;
   public static ValueRequired: string = null;
   public static InvalidPattern: string = null;
+  public static PostAddTitle: string = null;
+  public static LoginToRegister: string = null;  
+  public static AlreadyRegistred: string = null;  
+  
 }
