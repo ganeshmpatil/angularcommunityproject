@@ -45,6 +45,6 @@ export class LoginService {
   }
 
   sendResetEmail(userid: string) {
-    return this.http.get(this.sendEmailPath + userid);
+    return this.http.post(this.sendEmailPath + userid, null);
   }
 }

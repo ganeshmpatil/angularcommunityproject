@@ -118,4 +118,6 @@ export const resources = {
   PostAddTitle:"Post Free Ad",
   LoginToRegister:"Please Login / Signup to post",
   AlreadyRegistred:"You have Already Registred",
+  EmailSent:"Email sent to your registered email address ",
+  InvalidUsernamePassword:"Invalid Username or password. "
 }

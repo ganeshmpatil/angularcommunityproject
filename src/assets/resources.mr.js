@@ -118,4 +118,7 @@ export const resources = {
   PostAddTitle:"विनामूल्य जाहिरात पोस्ट करा",
   LoginToRegister:"कृपया पोस्ट करण्यासाठी लॉगिन/साइन अप करा",
   AlreadyRegistred:"आपण आधीच नोंदणी केली आहे",
+  EmailSent:"आपल्या नोंदणीकृत ईमेल पत्त्यावर ईमेल पाठविला आहे ",
+  InvalidUsernamePassword:"अवैध  यूझरनेम  किंवा  पासवर्ड "
+
 }

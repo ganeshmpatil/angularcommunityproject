@@ -118,5 +118,7 @@ export abstract class Resources {
   public static PostAddTitle: string = null;
   public static LoginToRegister: string = null;  
   public static AlreadyRegistred: string = null;  
-  
+  public static EmailSent: string = null;
+  public static InvalidUsernamePassword: string = null;
+  public static LoginError: string = null;
 }

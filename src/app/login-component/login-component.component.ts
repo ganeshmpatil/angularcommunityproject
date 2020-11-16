@@ -54,7 +54,10 @@ export class LoginComponentComponent implements OnInit {
 
   onSubmit() {
     if (this.forgotPassword) {
+      console.log('sending reset email for ' + this.f.username.value);
       this.loginService.sendResetEmail(this.f.username.value).subscribe(() => {
+        this.router.navigate([''], { relativeTo: this.route });
+        this.notificationService.addSuccess(this.resources.EmailSent);
         return;
       });
       return;
@@ -77,12 +80,12 @@ export class LoginComponentComponent implements OnInit {
           } else {
             this.loading = false;
             this.loginStatus.loginUserId = undefined;
-            this.notificationService.addError('Invalid User Name / Password');
+            this.notificationService.addError(this.resources.InvalidUsernamePassword);
           }
         },
         (error) => {
           this.loginStatus.loginUserId = undefined;
-          this.notificationService.addError('Error Occured while logging');
+          this.notificationService.addError(this.resources.LoginError);
           this.loading = false;
         }
       );
