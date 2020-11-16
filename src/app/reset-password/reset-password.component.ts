@@ -43,6 +43,12 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.f.password.value !== this.f.confirmpassword.value){
+      this.notificationService.addError(
+        this.resources.PasswordMismatch
+      );
+      return;
+    }
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
@@ -56,10 +62,10 @@ export class ResetPasswordComponent implements OnInit {
           this.notificationService.addSuccess(
             this.resources.PasswordResetSuccess
           );
-          this.router.navigate([this.returnUrl]);
           this.loginStatus.loginUserId = this.f.username.value;
         },
         (error) => {
+          console.log('Error during passwrd reset ' + JSON.stringify(error));
           this.loginStatus.loginUserId = undefined;
           this.notificationService.addError(
             this.resources.PasswordResetFail
