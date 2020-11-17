@@ -1,0 +1,31 @@
+<div *ngIf="feedBackFormVisible">
+    <div>
+        <div>
+            {{ resources.FeedbackForm }}
+        </div>
+        <br />
+
+    </div>
+    <form [formGroup]="feedbackForm" (ngSubmit)="createFeedback()">
+        <div class="form-group">
+            <div class="field">
+                <label class="label">{{ resources.Comments }}</label>
+                <div class="control">
+                    <textarea class="form-control" [formControl]="feedbackForm.get('comments')"></textarea>
+                </div>
+            </div>
+
+            <app-input label="{{ resources.Name }}" [control]="feedbackForm.get('name')"></app-input>
+            <br/>
+
+            <button mdbBtn color="primary" mdbWavesEffect class="button is-primary" [disabled]="feedbackForm.invalid"
+                type="submit">
+                {{ resources.Submit }}
+            </button>
+
+            <button class="button is-warning" type="button" (click)="onCancelClick()">
+                {{ resources.Cancel }}
+            </button>
+        </div>
+    </form>
+</div>

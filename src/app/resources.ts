@@ -121,4 +121,8 @@ export abstract class Resources {
   public static EmailSent: string = null;
   public static InvalidUsernamePassword: string = null;
   public static LoginError: string = null;
+  public static FeedBackPostSuccess: string = null;
+  public static FeedBackPostFail: string = null;
+  public static Comments: string = null; 
+  public static FeedbackForm: string = null; 
 }

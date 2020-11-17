@@ -1,17 +1,14 @@
-4 ) advertise page functionality -- tomorrow
-6 ) Remove register button on matrimony and blood if posted.	 -- Day after Tomorrow 
-7 ) after signin image not showing on community page.
-8 ) Implement validation. -- Today 17:15 -- 19:00
-10 ) Mail not going. -- Monday
-12 ) secret store. --Monday
-13 ) Randon First Slide error..
-14 ) Trade posted by Name correction Today 
-15 ) Image upload button click handle
-16 ) Handle Pin code numeric only on form validation.
+Always change .env file first..
 
+15 ) Create Feedback Form ...
+16 ) In case of invalid user name app creashes in Node...
+17 ) Able to Login with any password for ganesh.patil.31@gmail.com
+18 ) Show Hourglass when sending email...
+19 ) reset password  compare password and confirm password.
 
 search drop down based on various values
 
 make domain part first
 
 Search drodown...clear button ....
+

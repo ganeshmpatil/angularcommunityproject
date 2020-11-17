@@ -119,5 +119,9 @@ export const resources = {
   LoginToRegister:"Please Login / Signup to post",
   AlreadyRegistred:"You have Already Registred",
   EmailSent:"Email sent to your registered email address ",
-  InvalidUsernamePassword:"Invalid Username or password. "
+  InvalidUsernamePassword:"Invalid Username or password. ",
+  FeedBackPostSuccess:"Feedback Posted successfully !!",
+  FeedBackPostFail:"Feedback Post Failed !!",
+  Comments:"Comments",
+  FeedbackForm:"Feedback Form :",
 }

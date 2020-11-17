@@ -119,6 +119,10 @@ export const resources = {
   LoginToRegister:"कृपया पोस्ट करण्यासाठी लॉगिन/साइन अप करा",
   AlreadyRegistred:"आपण आधीच नोंदणी केली आहे",
   EmailSent:"आपल्या नोंदणीकृत ईमेल पत्त्यावर ईमेल पाठविला आहे ",
-  InvalidUsernamePassword:"अवैध  यूझरनेम  किंवा  पासवर्ड "
+  InvalidUsernamePassword:"अवैध  यूझरनेम  किंवा  पासवर्ड ",
+  FeedBackPostSuccess:"अभिप्राय यशस्वीरित्या पोस्ट केले !!",
+  FeedBackPostFail:"अभिप्राय पोस्ट अयशस्वी !!",
+  Comments:"टिप्पणी",
+  FeedbackForm:"अभिप्राय फॉर्म : ",
 
 }

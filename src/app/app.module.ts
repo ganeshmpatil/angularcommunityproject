@@ -23,6 +23,7 @@ import { BannerComponent } from './advertise/banner/banner.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { HistoryComponent } from './history/history.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { FeedbackComponent } from './footer/feedback/feedback.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -36,6 +37,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     LoginComponentComponent,
     HistoryComponent,
     ResetPasswordComponent,
+    FeedbackComponent,
   ],
   imports: [
     BrowserModule,
