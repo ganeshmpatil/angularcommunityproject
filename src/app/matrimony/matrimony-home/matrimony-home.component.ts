@@ -15,7 +15,7 @@ import * as _ from 'lodash';
 })
 export class MatrimonyHomeComponent implements OnInit {
   allUserMatrimonyDetails: any[];
-  itemsPerPage = 5;
+  itemsPerPage = 9;
   loggedinUserId: any;
   numberOfPages: any;
   currentPage = 1;

@@ -12,7 +12,7 @@ import { Resources } from '../../resources';
 })
 export class CitizenregistryhomeComponent implements OnInit {
   allUserDetails: any[];
-  itemsPerPage = 5;
+  itemsPerPage = 9;
   loggedinUserId: any;
   count: number;
   numberOfPages: any;

@@ -11,7 +11,7 @@ import { Resources } from '../../resources';
 })
 export class TradeHomeComponent implements OnInit {
   allTradeDetails: any;
-  itemsPerPage = 5;
+  itemsPerPage = 9;
   numberOfPages: any;
   currentPage = 1;
   count: number;

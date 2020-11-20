@@ -13,12 +13,14 @@
 </div>
 <br />
 <div>
+  <div class="card-deck" >
   <ng-container *ngFor="let item of allUserMatrimonyDetails">
     <div>
       <app-matrimonycard [matrimonyDetail]="item" [showUpdateButton]="item.userid === loggedinUserId ? true : false"
         (deleteEvent)="refereshOnDelete()"></app-matrimonycard>
     </div>
   </ng-container>
+</div>
 </div>
 <div>
   <app-pagination *ngIf="count !== undefined && count > 0 && !isSearchMode" [count]="count"

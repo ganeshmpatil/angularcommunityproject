@@ -1,0 +1,4 @@
+.card-img-top {
+    max-height: 45vh; /*not want to take all vertical space*/
+    /*show all image, autosized, no cut, in available space*/
+}

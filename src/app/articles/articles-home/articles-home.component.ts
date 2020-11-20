@@ -11,7 +11,7 @@ import { Resources } from '../../resources';
 })
 export class ArticlesHomeComponent implements OnInit {
   allArticlesDetails: any[];
-  itemsPerPage = 5;
+  itemsPerPage = 9;
   numberOfPages: any;
   currentPage = 1;
   loggedinUserId: any;
