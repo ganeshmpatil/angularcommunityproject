@@ -30,7 +30,7 @@ export const resources = {
   MatrimonyModuleLabel: "Matrimonial ",
   TradeModuleLabel: "Trade Buy-Sell",
   BloodModuleLabel: "Blood Donation Register",
-  ArticlesModuleLabel: "Articles",
+  ArticlesModuleLabel: "Articles / Success Stories",
   AdvertiseModuleLabel: "Advertize",
   ArticleHeadline: "Headline",
   ArticleSummary: "Content",
